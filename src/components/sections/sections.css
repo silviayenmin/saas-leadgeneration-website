@@ -1,0 +1,31 @@
+/* Placeholder Sections CSS */
+
+.section-placeholder {
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 1px dashed var(--border);
+  position: relative;
+}
+
+.section-placeholder__card {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-placeholder__tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+}
+
+.hero-placeholder {
+  padding-top: calc(var(--header-height) + 60px);
+  min-height: 500px;
+}
