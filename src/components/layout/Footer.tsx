@@ -1,77 +1,90 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import { Container } from '../ui/Container';
-import { scrollToSection } from '../../utils/helpers';
 import './layout.css';
 
 export const Footer: React.FC = () => {
-  const handleNavClick = (href: string) => {
-    scrollToSection(href);
+  const location = useLocation();
+
+  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   return (
-    <footer className="footer">
+    <footer className="site-footer">
       <Container size="lg">
-        <div className="footer__top">
-          {/* Brand Info */}
-          <div className="footer__brand-col">
-            <Link to="/" className="navbar__brand">
-              <div className="navbar__brand-icon">
-                <MapPin size={20} />
+        <div className="footer-grid">
+          {/* Left Column: Brand & Summary */}
+          <div className="footer-brand-col">
+            <Link to="/" className="footer-logo-link">
+              <div className="footer-logo-icon">
+                <MapPin size={22} color="#0EA5A4" />
               </div>
-              <span>
-                MapFlow<span className="text-gradient"> AI</span>
-              </span>
+              <span className="footer-brand-name">MapFlow AI</span>
             </Link>
-            <p className="footer__description">
-              Google Maps B2B Lead Discovery, Automated Contact Enrichment, and AI Cold Outreach pipeline.
+            <p className="footer-brand-desc">
+              Turn Google Maps into your automated B2B lead engine.
             </p>
           </div>
 
-          {/* Nav Column Links */}
-          <div className="footer__grid">
-            <div>
-              <h4 className="footer__col-title">Navigation</h4>
-              <ul className="footer__list">
-                <li>
-                  <a href="#product" className="footer__link" onClick={(e) => { e.preventDefault(); handleNavClick('#product'); }}>
-                    Product
-                  </a>
-                </li>
-                <li>
-                  <a href="#how-it-works" className="footer__link" onClick={(e) => { e.preventDefault(); handleNavClick('#how-it-works'); }}>
-                    How It Works
-                  </a>
-                </li>
-                <li>
-                  <a href="#pricing" className="footer__link" onClick={(e) => { e.preventDefault(); handleNavClick('#pricing'); }}>
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#faq" className="footer__link" onClick={(e) => { e.preventDefault(); handleNavClick('#faq'); }}>
-                    FAQ
-                  </a>
-                </li>
-              </ul>
-            </div>
+          {/* Navigation Links */}
+          <div className="footer-links-col">
+            <h4 className="footer-col-title">Navigation</h4>
+            <ul className="footer-links-list">
+              <li>
+                <a href="#product" onClick={(e) => handleSectionClick(e, 'product')}>
+                  Product
+                </a>
+              </li>
+              <li>
+                <a href="#how-it-works" onClick={(e) => handleSectionClick(e, 'how-it-works')}>
+                  How It Works
+                </a>
+              </li>
+              <li>
+                <a href="#pricing" onClick={(e) => handleSectionClick(e, 'pricing')}>
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')}>
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="#faq" onClick={(e) => handleSectionClick(e, 'faq')}>
+                  FAQ
+                </a>
+              </li>
+            </ul>
+          </div>
 
-            <div>
-              <h4 className="footer__col-title">Legal</h4>
-              <ul className="footer__list">
-                <li><a href="#privacy" className="footer__link">Privacy Policy</a></li>
-                <li><a href="#terms" className="footer__link">Terms of Service</a></li>
-                <li><a href="#security" className="footer__link">Security</a></li>
-              </ul>
-            </div>
+          {/* Account Links */}
+          <div className="footer-links-col">
+            <h4 className="footer-col-title">Account</h4>
+            <ul className="footer-links-list">
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/signup">Get Started</Link>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="footer__bottom">
-          <p>© {new Date().getFullYear()} MapFlow AI Inc. All rights reserved.</p>
-          <p>Built for high-converting B2B lead generation & outreach.</p>
+        {/* Footer Bottom Bar */}
+        <div className="footer-bottom-bar">
+          <p className="footer-copyright">
+            © 2026 MapFlow AI. All rights reserved.
+          </p>
         </div>
       </Container>
     </footer>

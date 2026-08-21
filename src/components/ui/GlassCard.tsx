@@ -9,9 +9,11 @@ export const GlassCard: React.FC<GlassCardProps> = ({
   hoverEffect = true,
   glow = false,
   padding = 'md',
+  style,
 }) => {
   return (
     <div
+      style={style}
       className={cn(
         'ui-glass-card',
         `ui-glass-card--padding-${padding}`,

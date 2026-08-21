@@ -7,6 +7,7 @@ import { FeaturesSection } from '../components/sections/FeaturesSection';
 import { ProductShowcaseSection } from '../components/sections/ProductShowcaseSection';
 import { RoiCalculatorSection } from '../components/sections/RoiCalculatorSection';
 import { PricingSection } from '../components/sections/PricingSection';
+import { ContactSection } from '../components/sections/ContactSection';
 import { TestimonialsSection } from '../components/sections/TestimonialsSection';
 import { FaqSection } from '../components/sections/FaqSection';
 import { FinalCtaSection } from '../components/sections/FinalCtaSection';
@@ -27,6 +28,7 @@ export const LandingPage: React.FC = () => {
         <ProductShowcaseSection />
         <RoiCalculatorSection />
         <PricingSection />
+        <ContactSection />
         <TestimonialsSection />
         <FaqSection />
         <FinalCtaSection />

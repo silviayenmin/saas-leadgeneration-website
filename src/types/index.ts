@@ -40,12 +40,13 @@ export interface GlassCardProps {
   hoverEffect?: boolean;
   glow?: boolean;
   padding?: 'none' | 'sm' | 'md' | 'lg';
+  style?: React.CSSProperties;
 }
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title?: string;
+  title?: ReactNode;
   children: ReactNode;
 }
 
@@ -53,3 +54,5 @@ export interface NavItem {
   label: string;
   href: string;
 }
+
+export * from './contact';
