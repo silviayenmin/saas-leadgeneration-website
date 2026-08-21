@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { MapPin, Menu, X, ArrowRight } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
+import { ThemeToggle } from '../common/ThemeToggle';
 import { scrollToSection } from '../../utils/helpers';
 import { NavItem } from '../../types';
 import './layout.css';
@@ -11,6 +12,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Product', href: '#product' },
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Pricing', href: '#pricing' },
+  { label: 'Contact', href: '#contact' },
   { label: 'FAQ', href: '#faq' },
 ];
 
@@ -39,17 +41,17 @@ export const Navbar: React.FC = () => {
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <Container size="lg" className="navbar__inner">
-        {/* Brand Logo */}
+        {/* Left: Brand Logo & Wordmark */}
         <Link to="/" className="navbar__brand">
           <div className="navbar__brand-icon">
             <MapPin size={20} />
           </div>
-          <span>
+          <span className="navbar__brand-text">
             MapFlow<span className="text-gradient"> AI</span>
           </span>
         </Link>
 
-        {/* Desktop Links */}
+        {/* Center: Desktop Nav Links */}
         <nav className="navbar__links">
           {NAV_ITEMS.map((item) => (
             <a
@@ -66,31 +68,38 @@ export const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        {/* Action Button */}
+        {/* Right: Theme Switcher & Desktop Actions */}
         <div className="navbar__actions">
+          <ThemeToggle />
+          <Button variant="ghost" size="sm" href="/login">
+            Login
+          </Button>
           <Button
             variant="primary"
             size="sm"
-            href="#cta"
+            href="/signup"
             icon={<ArrowRight size={16} />}
           >
-            Get Started
+            Get Started Free
           </Button>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="navbar__mobile-toggle"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle Navigation Menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Controls: Theme Switcher + Hamburger Toggle */}
+        <div className="navbar__mobile-right">
+          <ThemeToggle />
+          <button
+            className="navbar__mobile-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </Container>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="navbar__mobile-menu">
+        <div className="navbar__mobile-menu animate-fade-up">
           <ul className="navbar__mobile-links">
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>
@@ -109,13 +118,21 @@ export const Navbar: React.FC = () => {
           </ul>
           <div className="navbar__mobile-actions">
             <Button
+              variant="ghost"
+              fullWidth
+              href="/login"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Login
+            </Button>
+            <Button
               variant="primary"
               fullWidth
-              href="#cta"
+              href="/signup"
               icon={<ArrowRight size={16} />}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Get Started
+              Get Started Free
             </Button>
           </div>
         </div>
