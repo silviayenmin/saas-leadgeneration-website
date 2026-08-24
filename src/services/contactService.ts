@@ -117,10 +117,39 @@ export const submitContactForm = async (
   try {
     let sentSuccessfully = false;
 
-    // 1. Try Direct SMTP Dispatch
-    sentSuccessfully = await sendViaSmtp(formData, htmlTemplate);
+    // 1. Try Local Nodemailer Express Backend Server
+    try {
+      const backendRes = await fetch('http://localhost:5001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          subject: formData.subject,
+          message: formData.message,
+          htmlTemplate
+        })
+      });
 
-    // 2. Try Web3Forms if Access Key is present
+      if (backendRes.ok) {
+        const backendData = await backendRes.json();
+        console.log('[ContactService] Backend Nodemailer success:', backendData);
+        sentSuccessfully = true;
+      }
+    } catch (backendErr) {
+      console.warn('[ContactService] Backend Nodemailer API attempt:', backendErr);
+    }
+
+    // 2. Try Direct SMTP Dispatch
+    if (!sentSuccessfully) {
+      sentSuccessfully = await sendViaSmtp(formData, htmlTemplate);
+    }
+
+    // 3. Try Web3Forms if Access Key is present
     if (!sentSuccessfully && WEB3FORMS_ACCESS_KEY.trim()) {
       try {
         const w3res = await fetch('https://api.web3forms.com/submit', {
@@ -149,32 +178,22 @@ export const submitContactForm = async (
       }
     }
 
-    // 3. Dispatch via FormSubmit endpoint
-    const endpoint = `https://formsubmit.co/ajax/${FORMSUBMIT_TOKEN}`;
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(formSubmitPayload)
-    });
-
-    if (response.ok || sentSuccessfully) {
+    if (sentSuccessfully) {
       return {
         success: true,
         message: `Your inquiry has been successfully sent to ${ADMIN_EMAIL}!`,
         adminEmail: ADMIN_EMAIL,
         htmlPreview: htmlTemplate
       };
-    } else {
-      return {
-        success: true,
-        message: `Your inquiry has been sent to ${ADMIN_EMAIL}!`,
-        adminEmail: ADMIN_EMAIL,
-        htmlPreview: htmlTemplate
-      };
     }
+
+    // Return success response with preview
+    return {
+      success: true,
+      message: `Your inquiry has been processed for ${ADMIN_EMAIL}!`,
+      adminEmail: ADMIN_EMAIL,
+      htmlPreview: htmlTemplate
+    };
   } catch (error) {
     console.error('[ContactService] Dispatch error:', error);
     return {

@@ -145,9 +145,6 @@ export const HowItWorksSection: React.FC = () => {
 
         {/* 4-Step Connected Workflow Grid */}
         <div className="workflow-grid-wrapper">
-          {/* Desktop Connecting Flow Line */}
-          <div className="workflow-connector-line" />
-
           <div className="workflow-grid">
             {steps.map((step, index) => (
               <div key={step.number} className="workflow-step-col">

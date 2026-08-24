@@ -4,8 +4,8 @@ import {
   Check,
   Sparkles,
   ShieldCheck,
-  HelpCircle,
   ArrowRight,
+  ArrowUpRight,
   Zap,
   Crown,
   TrendingUp,
@@ -227,7 +227,9 @@ export const PricingSection: React.FC = () => {
         {/* Subtext and Compare Matrix Action */}
         <div className="pricing-bottom-bar">
           <div className="no-card-subtext">
-            <ShieldCheck size={16} color="#0EA5A4" />
+            <div className="shield-icon-badge">
+              <ShieldCheck size={16} />
+            </div>
             <span>No credit card required to start • Cancel anytime with 1 click</span>
           </div>
 
@@ -236,8 +238,9 @@ export const PricingSection: React.FC = () => {
             className="compare-matrix-btn"
             onClick={() => setIsCompareOpen(true)}
           >
-            <HelpCircle size={15} />
+            <TableProperties size={15} />
             <span>Compare full feature matrix</span>
+            <ArrowUpRight size={14} className="matrix-arrow-icon" />
           </button>
         </div>
       </Container>

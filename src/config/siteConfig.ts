@@ -6,7 +6,7 @@
  */
 export const SITE_CONFIG = {
   // Configurable SaaS Product App URL (Internal route like '/signup' or external URL like 'https://app.mapflow.ai')
-  saasProductUrl: '/signup',
+  saasProductUrl: 'https://28j0qmws-3000.inc1.devtunnels.ms/',
   appName: 'MapFlow AI',
   contactEmail: 'madhusudhanan.yenmin@gmail.com'
 };

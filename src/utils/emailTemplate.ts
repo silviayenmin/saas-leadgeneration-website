@@ -2,7 +2,7 @@ import { ContactFormData } from '../types/contact';
 
 /**
  * Generates a modern, responsive HTML email template for MapFlow AI contact form inquiries.
- * Designed with premium glassmorphism accents, brand typography, and interactive CTAs.
+ * Designed with premium glassmorphism accents, brand typography, inline button styles, and interactive CTAs.
  */
 export const generateEmailHtml = (formData: ContactFormData): string => {
   const formattedDate = new Date().toLocaleString('en-US', {
@@ -17,6 +17,7 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
 
   const phoneDisplay = formData.phone?.trim() ? formData.phone.trim() : 'Not provided';
   const companyDisplay = formData.company?.trim() ? formData.company.trim() : 'Not specified';
+  const firstName = formData.fullName.split(' ')[0] || formData.fullName;
 
   return `
 <!DOCTYPE html>
@@ -44,16 +45,15 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
       max-width: 600px;
       margin: 0 auto;
       background-color: #0E1626;
-      border: 1px solid rgba(14, 165, 164, 0.3);
+      border: 1px solid rgba(14, 165, 164, 0.35);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(3, 113, 114, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(3, 113, 114, 0.2);
     }
     .header {
       background: linear-gradient(135deg, #037172 0%, #0EA5A4 100%);
       padding: 32px 24px;
       text-align: center;
-      position: relative;
     }
     .header-logo {
       font-size: 24px;
@@ -109,15 +109,12 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
       color: #38BDF8;
       text-decoration: none;
     }
-    .info-value a:hover {
-      text-decoration: underline;
-    }
     .badge-subject {
       display: inline-block;
       background: rgba(14, 165, 164, 0.18);
       color: #38BDF8;
       border: 1px solid rgba(14, 165, 164, 0.4);
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: 6px;
       font-weight: 700;
       font-size: 12px;
@@ -147,35 +144,6 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
       white-space: pre-wrap;
       margin: 0;
     }
-    .cta-container {
-      text-align: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-    .cta-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #0EA5A4 0%, #037172 100%);
-      color: #FFFFFF !important;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 14px 28px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(14, 165, 164, 0.3);
-      margin: 6px;
-    }
-    .cta-button-secondary {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.08);
-      color: #E2E8F0 !important;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 13px 24px;
-      border-radius: 8px;
-      margin: 6px;
-    }
     .footer {
       background-color: #080C16;
       padding: 20px 24px;
@@ -183,10 +151,6 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       font-size: 12px;
       color: #64748B;
-    }
-    .footer a {
-      color: #0EA5A4;
-      text-decoration: none;
     }
   </style>
 </head>
@@ -209,7 +173,7 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
           <tr>
             <td class="info-label">Work Email</td>
             <td class="info-value">
-              <a href="mailto:${escapeHtml(formData.email)}">${escapeHtml(formData.email)}</a>
+              <a href="mailto:${escapeHtml(formData.email)}" style="color: #38BDF8; font-weight: 600; text-decoration: none;">${escapeHtml(formData.email)}</a>
             </td>
           </tr>
           <tr>
@@ -237,16 +201,23 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
           <p class="message-body">${escapeHtml(formData.message)}</p>
         </div>
 
-        <div class="cta-container">
-          <a href="mailto:${escapeHtml(formData.email)}?subject=Re: ${encodeURIComponent(formData.subject)} - MapFlow AI" className="cta-button">
-            ✉️ Reply to ${escapeHtml(formData.fullName.split(' ')[0])}
-          </a>
-          ${formData.phone?.trim() ? `
-            <a href="tel:${escapeHtml(formData.phone.trim())}" className="cta-button-secondary">
-              📞 Call Prospect
-            </a>
-          ` : ''}
-        </div>
+        <!-- ENHANCED ACTION BUTTONS BAR -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 24px;">
+          <tr>
+            <td align="center">
+              <a href="mailto:${escapeHtml(formData.email)}?subject=Re: ${encodeURIComponent(formData.subject)} - MapFlow AI"
+                 style="display: inline-block; background: linear-gradient(135deg, #0EA5A4 0%, #037172 100%); color: #FFFFFF !important; text-decoration: none !important; font-weight: 700; font-size: 14px; padding: 14px 28px; border-radius: 8px; box-shadow: 0 4px 16px rgba(14, 165, 164, 0.4); margin: 6px; letter-spacing: 0.02em;">
+                ✉️ &nbsp;Reply to ${escapeHtml(firstName)}
+              </a>
+              ${formData.phone?.trim() && formData.phone.trim() !== 'N/A' ? `
+              <a href="tel:${escapeHtml(formData.phone.trim())}"
+                 style="display: inline-block; background: #162238; color: #38BDF8 !important; border: 1px solid rgba(56, 189, 248, 0.4); text-decoration: none !important; font-weight: 700; font-size: 14px; padding: 13px 24px; border-radius: 8px; margin: 6px; letter-spacing: 0.02em;">
+                📞 &nbsp;Call Prospect (${escapeHtml(formData.phone.trim())})
+              </a>
+              ` : ''}
+            </td>
+          </tr>
+        </table>
       </div>
 
       <div class="footer">
