@@ -1,10 +1,11 @@
 export interface ContactFormData {
   fullName: string;
   email: string;
+  phone?: string;
   company?: string;
   subject: string;
   message: string;
-  consent: boolean;
+  consent?: boolean;
 }
 
 export type SubjectOption =
@@ -18,6 +19,7 @@ export type SubjectOption =
 export interface FormErrors {
   fullName?: string;
   email?: string;
+  phone?: string;
   subject?: string;
   message?: string;
   consent?: string;

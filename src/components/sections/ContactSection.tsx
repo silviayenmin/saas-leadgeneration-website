@@ -9,13 +9,16 @@ import {
   MapPin,
   Loader2,
   AlertCircle,
-  RotateCcw
+  RotateCcw,
+  Eye
 } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import { GlassCard } from '../ui/GlassCard';
+import { CustomSelect } from '../ui/CustomSelect';
+import { Modal } from '../ui/Modal';
 import { ContactFormData, SubjectOption, FormErrors } from '../../types/contact';
-import { submitContactForm } from '../../services/contactService';
+import { submitContactForm, ADMIN_EMAIL } from '../../services/contactService';
 import './sections.css';
 
 const SUBJECT_OPTIONS: SubjectOption[] = [
@@ -30,10 +33,10 @@ const SUBJECT_OPTIONS: SubjectOption[] = [
 const INITIAL_FORM_DATA: ContactFormData = {
   fullName: '',
   email: '',
+  phone: '',
   company: '',
   subject: '',
-  message: '',
-  consent: false
+  message: ''
 };
 
 export const ContactSection: React.FC = () => {
@@ -43,6 +46,8 @@ export const ContactSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
+  const [submittedHtmlPreview, setSubmittedHtmlPreview] = useState<string | null>(null);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
 
   // Email format validation helper
   const isValidEmail = (email: string): boolean => {
@@ -74,43 +79,59 @@ export const ContactSection: React.FC = () => {
       newErrors.message = 'Please enter at least 10 characters.';
     }
 
-    if (!data.consent) {
-      newErrors.consent = 'You must agree to be contacted.';
-    }
-
     return newErrors;
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
+    const { name, value } = e.target;
 
-    const nextFormData = {
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value
-    };
-
-    setFormData(nextFormData);
-
-    // Live error clearing if field was touched
-    if (touched[name]) {
-      const fieldErrors = validate(nextFormData);
-      setErrors((prev) => ({
+    setFormData((prev) => {
+      const nextFormData = {
         ...prev,
-        [name]: fieldErrors[name as keyof FormErrors]
-      }));
+        [name]: value
+      };
+
+      if (touched[name]) {
+        const fieldErrors = validate(nextFormData);
+        setErrors((prevErr) => ({
+          ...prevErr,
+          [name]: fieldErrors[name as keyof FormErrors]
+        }));
+      }
+
+      return nextFormData;
+    });
+  };
+
+  const handleSubjectChange = (val: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      subject: val
+    }));
+
+    setTouched((prev) => ({ ...prev, subject: true }));
+
+    if (val) {
+      setErrors((prevErr) => {
+        const updated = { ...prevErr };
+        delete updated.subject;
+        return updated;
+      });
     }
   };
 
   const handleBlur = (field: string) => {
     setTouched((prev) => ({ ...prev, [field]: true }));
-    const currentErrors = validate(formData);
-    setErrors((prev) => ({
-      ...prev,
-      [field]: currentErrors[field as keyof FormErrors]
-    }));
+    setFormData((currentFormData) => {
+      const currentErrors = validate(currentFormData);
+      setErrors((prevErr) => ({
+        ...prevErr,
+        [field]: currentErrors[field as keyof FormErrors]
+      }));
+      return currentFormData;
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -121,9 +142,9 @@ export const ContactSection: React.FC = () => {
     setTouched({
       fullName: true,
       email: true,
+      phone: true,
       subject: true,
-      message: true,
-      consent: true
+      message: true
     });
 
     const validationErrors = validate(formData);
@@ -139,6 +160,7 @@ export const ContactSection: React.FC = () => {
       const response = await submitContactForm(formData);
       if (response.success) {
         setIsSuccess(true);
+        setSubmittedHtmlPreview(response.htmlPreview || null);
         setFormData(INITIAL_FORM_DATA);
         setTouched({});
         setErrors({});
@@ -158,6 +180,7 @@ export const ContactSection: React.FC = () => {
     setFormData(INITIAL_FORM_DATA);
     setErrors({});
     setTouched({});
+    setSubmittedHtmlPreview(null);
   };
 
   return (
@@ -259,18 +282,31 @@ export const ContactSection: React.FC = () => {
                 <div className="state-icon-box success-icon-box">
                   <CheckCircle2 size={48} color="#22C55E" />
                 </div>
-                <h3 className="state-title">Message sent successfully!</h3>
+                <h3 className="state-title">Inquiry Sent to Admin!</h3>
                 <p className="state-subtext">
-                  Thanks for reaching out. Our team will get back to you soon.
+                  Your message with all filled details has been formatted into a modern email template and dispatched to <strong>{ADMIN_EMAIL}</strong>.
                 </p>
-                <button
-                  type="button"
-                  className="ui-button ui-button--primary ui-button--md"
-                  onClick={handleReset}
-                >
-                  <RotateCcw size={16} />
-                  <span>Send another message</span>
-                </button>
+                
+                <div className="success-action-group">
+                  {submittedHtmlPreview && (
+                    <button
+                      type="button"
+                      className="ui-button ui-button--secondary ui-button--md"
+                      onClick={() => setIsPreviewModalOpen(true)}
+                    >
+                      <Eye size={16} />
+                      <span>Preview Email UI Template</span>
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    className="ui-button ui-button--primary ui-button--md"
+                    onClick={handleReset}
+                  >
+                    <RotateCcw size={16} />
+                    <span>Send another message</span>
+                  </button>
+                </div>
               </div>
             ) : (
               /* Form State (Default / Submitting / Error) */
@@ -332,6 +368,23 @@ export const ContactSection: React.FC = () => {
                   )}
                 </div>
 
+                {/* Field: Phone Number */}
+                <div className="form-group">
+                  <label htmlFor="phone" className="form-label">
+                    Phone Number <span className="optional-tag">(Optional)</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    className="form-input"
+                    placeholder="+1 (555) 000-0000"
+                    value={formData.phone || ''}
+                    onChange={handleInputChange}
+                    disabled={isSubmitting}
+                  />
+                </div>
+
                 {/* Field: Company Name (Optional) */}
                 <div className="form-group">
                   <label htmlFor="company" className="form-label">
@@ -349,31 +402,24 @@ export const ContactSection: React.FC = () => {
                   />
                 </div>
 
-                {/* Field: Subject */}
+                {/* Field: Subject Modern Custom Dropdown */}
                 <div className={`form-group ${errors.subject ? 'has-error' : ''}`}>
                   <label htmlFor="subject" className="form-label">
                     Subject <span className="required-star">*</span>
                   </label>
-                  <select
+                  <CustomSelect
                     id="subject"
                     name="subject"
-                    className="form-select"
                     value={formData.subject}
-                    onChange={handleInputChange}
+                    options={SUBJECT_OPTIONS}
+                    placeholder="Select a subject..."
+                    onChange={handleSubjectChange}
                     onBlur={() => handleBlur('subject')}
+                    disabled={isSubmitting}
+                    hasError={Boolean(errors.subject)}
                     aria-invalid={Boolean(errors.subject)}
                     aria-describedby={errors.subject ? 'subject-error' : undefined}
-                    disabled={isSubmitting}
-                  >
-                    <option value="" disabled>
-                      Select a subject...
-                    </option>
-                    {SUBJECT_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
+                  />
                   {errors.subject && (
                     <span id="subject-error" className="form-error-msg" role="alert">
                       {errors.subject}
@@ -406,32 +452,6 @@ export const ContactSection: React.FC = () => {
                   )}
                 </div>
 
-                {/* Field: Consent Checkbox */}
-                <div className={`form-group form-group--checkbox ${errors.consent ? 'has-error' : ''}`}>
-                  <label htmlFor="consent" className="checkbox-label">
-                    <input
-                      type="checkbox"
-                      id="consent"
-                      name="consent"
-                      className="form-checkbox"
-                      checked={formData.consent}
-                      onChange={handleInputChange}
-                      onBlur={() => handleBlur('consent')}
-                      aria-invalid={Boolean(errors.consent)}
-                      aria-describedby={errors.consent ? 'consent-error' : undefined}
-                      disabled={isSubmitting}
-                    />
-                    <span className="checkbox-text">
-                      I agree to be contacted regarding my inquiry. <span className="required-star">*</span>
-                    </span>
-                  </label>
-                  {errors.consent && (
-                    <span id="consent-error" className="form-error-msg" role="alert">
-                      {errors.consent}
-                    </span>
-                  )}
-                </div>
-
                 {/* Submit Primary Button */}
                 <button
                   type="submit"
@@ -441,7 +461,7 @@ export const ContactSection: React.FC = () => {
                   {isSubmitting ? (
                     <>
                       <Loader2 size={18} className="spinner-icon" />
-                      <span>Sending...</span>
+                      <span>Sending to Admin...</span>
                     </>
                   ) : (
                     <>
@@ -455,6 +475,35 @@ export const ContactSection: React.FC = () => {
           </GlassCard>
         </div>
       </Container>
+
+      {/* Admin Email Modern UI Preview Modal */}
+      {submittedHtmlPreview && (
+        <Modal
+          isOpen={isPreviewModalOpen}
+          onClose={() => setIsPreviewModalOpen(false)}
+          title={`📧 Admin HTML Email Preview (${ADMIN_EMAIL})`}
+        >
+          <div className="email-preview-wrapper">
+            <div className="email-preview-meta">
+              <div className="meta-row">
+                <span className="meta-label">To Admin:</span>
+                <span className="meta-val">{ADMIN_EMAIL}</span>
+              </div>
+              <div className="meta-row">
+                <span className="meta-label">Status:</span>
+                <span className="meta-badge">Formatted &amp; Dispatched</span>
+              </div>
+            </div>
+            <iframe
+              title="Admin Email UI Preview"
+              srcDoc={submittedHtmlPreview}
+              className="email-preview-iframe"
+            />
+          </div>
+        </Modal>
+      )}
     </section>
   );
 };
+
+

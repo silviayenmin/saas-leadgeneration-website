@@ -27,11 +27,26 @@ export const Button: React.FC<ButtonProps> = ({
 
   const content = (
     <>
-      {icon && iconPosition === 'left' && <span className="ui-button__icon">{icon}</span>}
-      <span>{children}</span>
-      {icon && iconPosition === 'right' && <span className="ui-button__icon">{icon}</span>}
+      {icon && iconPosition === 'left' && <span className="ui-button__icon ui-button__icon--left">{icon}</span>}
+      <span className="ui-button__label">{children}</span>
+      {icon && iconPosition === 'right' && <span className="ui-button__icon ui-button__icon--right">{icon}</span>}
     </>
   );
+
+  // External URL check
+  if (href?.startsWith('http://') || href?.startsWith('https://')) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classNames}
+        onClick={onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+      >
+        {content}
+      </a>
+    );
+  }
 
   // Smooth scroll handle if href starts with #
   if (href?.startsWith('#')) {

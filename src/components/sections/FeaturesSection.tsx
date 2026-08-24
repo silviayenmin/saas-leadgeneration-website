@@ -13,7 +13,9 @@ import {
   TrendingUp,
   Zap,
   ArrowUpRight,
-  Code
+  Code,
+  Download,
+  FileSpreadsheet
 } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
@@ -45,7 +47,7 @@ export const FeaturesSection: React.FC = () => {
               </div>
               <div className="bento-metric-pill metric-pill--teal">
                 <TrendingUp size={13} />
-                <span>247 businesses found</span>
+                <span>10 Maps Leads Extracted</span>
               </div>
             </div>
 
@@ -60,16 +62,16 @@ export const FeaturesSection: React.FC = () => {
             <div className="bento-visual visual-extractor">
               <div className="extractor-search-bar">
                 <Search size={14} className="text-muted" />
-                <span className="extractor-query">Dentists in Austin, TX</span>
+                <span className="extractor-query">Software Development Company in Austin</span>
                 <span className="extractor-tag">Live Extractor</span>
               </div>
               <div className="extractor-lead-preview">
                 <div className="extractor-lead-info">
-                  <span className="lead-name">Austin Dental Care</span>
+                  <span className="lead-name">Vortex Global Software</span>
                   <div className="lead-stars">
                     <Star size={11} fill="#F59E0B" color="#F59E0B" />
                     <span>4.9</span>
-                    <span className="text-muted">(128 reviews)</span>
+                    <span className="text-muted">(AI Match: 40%)</span>
                   </div>
                 </div>
                 <span className="extractor-status">
@@ -87,7 +89,7 @@ export const FeaturesSection: React.FC = () => {
               </div>
               <div className="bento-metric-pill metric-pill--cyan">
                 <CheckCircle2 size={13} />
-                <span>183 verified emails</span>
+                <span>80% Phone &amp; Emails Found</span>
               </div>
             </div>
 
@@ -103,16 +105,16 @@ export const FeaturesSection: React.FC = () => {
               <div className="enrich-card">
                 <div className="enrich-row">
                   <Globe size={13} className="text-cyan" />
-                  <span className="enrich-domain">austindental.com</span>
+                  <span className="enrich-domain">vortexsoftware.io</span>
                   <ArrowUpRight size={11} className="text-muted" />
                 </div>
                 <div className="enrich-row email-highlight">
                   <MailCheck size={13} color="#22C55E" />
-                  <span className="enrich-email">dr.smith@austindental.com</span>
+                  <span className="enrich-email">contact@vortexsoftware.io</span>
                 </div>
                 <div className="enrich-tags">
-                  <span className="tech-tag"><Code size={10} /> WordPress</span>
-                  <span className="tech-tag">React</span>
+                  <span className="tech-tag"><Code size={10} /> Verified Email</span>
+                  <span className="tech-tag">Phone Found</span>
                 </div>
               </div>
             </div>
@@ -145,7 +147,7 @@ export const FeaturesSection: React.FC = () => {
                   <span>Groq Llama-3.3 Pitch</span>
                 </div>
                 <div className="ai-snippet-text">
-                  "Hi Dr. Smith, noticed your clinic's 4.9★ rating..."
+                  "Noticed Vortex Global's 4.9★ rating on Google Maps..."
                 </div>
               </div>
             </div>
@@ -175,19 +177,19 @@ export const FeaturesSection: React.FC = () => {
               <div className="bento-kanban-cols">
                 <div className="bento-col">
                   <span className="col-title">New</span>
-                  <div className="bento-kanban-card card-border-blue">Austin Dental</div>
+                  <div className="bento-kanban-card card-border-blue">Vortex Global</div>
                 </div>
                 <div className="bento-col">
                   <span className="col-title">Enriched</span>
-                  <div className="bento-kanban-card card-border-amber">Texas Smile</div>
+                  <div className="bento-kanban-card card-border-amber">Apex Digital</div>
                 </div>
                 <div className="bento-col">
                   <span className="col-title">Outreach</span>
-                  <div className="bento-kanban-card card-border-purple">Capital Clinic</div>
+                  <div className="bento-kanban-card card-border-purple">Synergy Web</div>
                 </div>
                 <div className="bento-col col--won">
                   <span className="col-title text-emerald">Closed</span>
-                  <div className="bento-kanban-card card-border-green">Lone Star Care</div>
+                  <div className="bento-kanban-card card-border-green">Frontier AI</div>
                 </div>
               </div>
             </div>
@@ -201,7 +203,7 @@ export const FeaturesSection: React.FC = () => {
               </div>
               <div className="bento-metric-pill metric-pill--emerald">
                 <MapPin size={13} />
-                <span>12 high-intent locations</span>
+                <span>Austin &amp; Global Scans</span>
               </div>
             </div>
 
@@ -238,7 +240,7 @@ export const FeaturesSection: React.FC = () => {
               </div>
               <div className="bento-metric-pill metric-pill--amber">
                 <Zap size={13} />
-                <span>420 / 500 credits</span>
+                <span>490 / 500 credits</span>
               </div>
             </div>
 
@@ -254,12 +256,41 @@ export const FeaturesSection: React.FC = () => {
               <div className="credit-meter-box">
                 <div className="credit-labels">
                   <span>Usage Rate</span>
-                  <span className="credit-pct">84% Available</span>
+                  <span className="credit-pct">98% Available</span>
                 </div>
                 <div className="credit-track">
-                  <div className="credit-fill" style={{ width: '84%' }} />
+                  <div className="credit-fill" style={{ width: '98%' }} />
                 </div>
                 <div className="credit-subtext">Transparent 1 credit per lead extraction</div>
+              </div>
+            </div>
+          </GlassCard>
+
+          {/* Feature 7 — Medium Bento Card (Fills 3rd column of Row 3) */}
+          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg">
+            <div className="bento-card-top">
+              <div className="bento-icon-box bento-icon--cyan">
+                <Download size={22} />
+              </div>
+              <div className="bento-metric-pill metric-pill--teal">
+                <Zap size={13} />
+                <span>1-Click Sync</span>
+              </div>
+            </div>
+
+            <div className="bento-card-body">
+              <h3 className="bento-title">Automated Lead Export &amp; CRM Sync</h3>
+              <p className="bento-description">
+                Export enriched leads directly to CSV files, Google Sheets, Salesforce, HubSpot, or custom webhook APIs.
+              </p>
+            </div>
+
+            {/* Micro UI Visual 7 */}
+            <div className="bento-visual visual-export">
+              <div className="export-pills-grid">
+                <span className="export-pill-chip"><FileSpreadsheet size={12} className="text-cyan" /> CSV Download</span>
+                <span className="export-pill-chip"><CheckCircle2 size={12} className="text-emerald" /> HubSpot Sync</span>
+                <span className="export-pill-chip"><Zap size={12} className="text-amber" /> Webhook API</span>
               </div>
             </div>
           </GlassCard>

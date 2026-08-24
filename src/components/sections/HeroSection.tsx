@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Play, CheckCircle2, Zap } from 'lucide-react';
+import { ArrowRight, Mail, CheckCircle2, Zap } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
@@ -41,21 +41,21 @@ export const HeroSection: React.FC = () => {
               <Button
                 variant="primary"
                 size="lg"
-                href="/signup"
+                href="#product"
                 icon={<ArrowRight size={18} />}
                 className="hero-btn-primary"
               >
-                Get Started Free
+                Try Live Demo
               </Button>
 
               <Button
                 variant="secondary"
                 size="lg"
-                href="#product"
-                icon={<Play size={16} fill="currentColor" />}
+                href="#contact"
+                icon={<Mail size={16} />}
                 className="hero-btn-secondary"
               >
-                View Live Demo
+                Contact Us
               </Button>
             </div>
 

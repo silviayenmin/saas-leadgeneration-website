@@ -203,7 +203,7 @@ export const PricingSection: React.FC = () => {
                     variant={tier.highlighted ? 'primary' : 'outline'}
                     size="lg"
                     fullWidth
-                    href="/signup"
+                    href="#contact"
                     icon={<ArrowRight size={16} />}
                   >
                     {tier.ctaText}
