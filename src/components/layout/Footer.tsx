@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
 
       <Container size="lg">
         {/* 4-Column Modern Grid */}
-        <div className="footer-grid">
+        <div className="footer-grid" data-aos="fade-up">
           {/* COLUMN 1: Brand & Office Location Info */}
           <div className="footer-brand-col">
             <Link to="/" className="footer-logo-link">

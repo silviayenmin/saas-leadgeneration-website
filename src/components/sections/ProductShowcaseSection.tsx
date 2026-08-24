@@ -102,7 +102,7 @@ export const ProductShowcaseSection: React.FC = () => {
         </div>
 
         {/* Product Dashboard Window Shell */}
-        <div className="showcase-window">
+        <div className="showcase-window" data-aos="zoom-in-up">
           {/* Window Bar — Replicating SaaS Top Bar from User Screenshots */}
           <div className="showcase-window-bar">
             <div className="window-dots">

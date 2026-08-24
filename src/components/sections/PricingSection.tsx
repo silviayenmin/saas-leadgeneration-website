@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
 import {
   Check,
   Sparkles,
@@ -17,6 +18,7 @@ import { SectionHeading } from '../ui/SectionHeading';
 import { GlassCard } from '../ui/GlassCard';
 import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
+import { SITE_CONFIG } from '../../config/siteConfig';
 import './sections.css';
 
 type BillingCycle = 'monthly' | 'annual';
@@ -39,6 +41,10 @@ interface PricingTier {
 export const PricingSection: React.FC = () => {
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('monthly');
   const [isCompareOpen, setIsCompareOpen] = useState(false);
+
+  useEffect(() => {
+    AOS.refresh();
+  }, [billingCycle]);
 
   const tiers: PricingTier[] = [
     {
@@ -142,13 +148,17 @@ export const PricingSection: React.FC = () => {
 
         {/* 3 Pricing Cards Grid */}
         <div className="pricing-grid">
-          {tiers.map((tier) => {
+          {tiers.map((tier, idx) => {
             const price = billingCycle === 'monthly' ? tier.monthlyPrice : tier.annualPrice;
+            const aosEffect = idx === 0 ? 'fade-right' : idx === 1 ? 'zoom-in-up' : 'fade-left';
             return (
               <GlassCard
                 key={tier.id}
                 className={`pricing-card ${tier.highlighted ? 'pricing-card--featured' : ''}`}
                 padding="lg"
+                data-aos={aosEffect}
+                data-aos-duration="1000"
+                data-aos-delay={(idx + 1) * 100}
               >
                 {/* Header Row: Icon + Most Popular Badge */}
                 <div className="card-top-header">
@@ -203,7 +213,7 @@ export const PricingSection: React.FC = () => {
                     variant={tier.highlighted ? 'primary' : 'outline'}
                     size="lg"
                     fullWidth
-                    href="#contact"
+                    href={SITE_CONFIG.saasProductUrl}
                     icon={<ArrowRight size={16} />}
                   >
                     {tier.ctaText}
