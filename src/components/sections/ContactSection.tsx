@@ -9,7 +9,6 @@ import {
   MapPin,
   Loader2,
   AlertCircle,
-  RotateCcw,
   Eye
 } from 'lucide-react';
 import { Container } from '../ui/Container';
@@ -164,6 +163,11 @@ export const ContactSection: React.FC = () => {
         setFormData(INITIAL_FORM_DATA);
         setTouched({});
         setErrors({});
+
+        // Automatically revert the button state back after 4 seconds
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 4000);
       } else {
         setApiError('Something went wrong. Please try again.');
       }
@@ -172,15 +176,6 @@ export const ContactSection: React.FC = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleReset = () => {
-    setIsSuccess(false);
-    setApiError(null);
-    setFormData(INITIAL_FORM_DATA);
-    setErrors({});
-    setTouched({});
-    setSubmittedHtmlPreview(null);
   };
 
   return (
@@ -200,7 +195,7 @@ export const ContactSection: React.FC = () => {
         {/* Two-Column Grid */}
         <div className="contact-grid">
           {/* LEFT SIDE: Information Panel & MapFlow Visuals */}
-          <div className="contact-info-panel">
+          <div className="contact-info-panel reveal-fade-left">
             <div className="info-panel-head">
               <span className="info-badge">
                 <Sparkles size={14} className="text-cyan" />
@@ -275,48 +270,65 @@ export const ContactSection: React.FC = () => {
           </div>
 
           {/* RIGHT SIDE: Glassmorphism Form Card */}
-          <GlassCard className="contact-form-card" padding="lg">
-            {isSuccess ? (
-              /* Success UI State */
-              <div className="contact-state-container success-state">
-                <div className="state-icon-box success-icon-box">
-                  <CheckCircle2 size={48} color="#22C55E" />
-                </div>
-                <h3 className="state-title">Inquiry Sent to Admin!</h3>
-                <p className="state-subtext">
-                  Your message with all filled details has been formatted into a modern email template and dispatched to <strong>{ADMIN_EMAIL}</strong>.
-                </p>
-                
-                <div className="success-action-group">
+          <GlassCard className="contact-form-card reveal-fade-right" padding="lg">
+            <form onSubmit={handleSubmit} noValidate className="contact-form">
+              {/* Success Notification Banner */}
+              {isSuccess && (
+                <div
+                  className="form-alert form-alert--success"
+                  role="status"
+                  style={{
+                    background: 'rgba(34, 197, 94, 0.14)',
+                    border: '1px solid rgba(34, 197, 94, 0.4)',
+                    color: '#22C55E',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    marginBottom: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '12px',
+                    animation: 'fadeIn 0.4s ease'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <CheckCircle2 size={18} color="#22C55E" />
+                    <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>
+                      Inquiry sent to <strong>{ADMIN_EMAIL}</strong>! Form reset.
+                    </span>
+                  </div>
                   {submittedHtmlPreview && (
                     <button
                       type="button"
-                      className="ui-button ui-button--secondary ui-button--md"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        color: '#ffffff',
+                        padding: '5px 12px',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        whiteSpace: 'nowrap'
+                      }}
                       onClick={() => setIsPreviewModalOpen(true)}
                     >
-                      <Eye size={16} />
-                      <span>Preview Email UI Template</span>
+                      <Eye size={14} />
+                      <span>Preview Email</span>
                     </button>
                   )}
-                  <button
-                    type="button"
-                    className="ui-button ui-button--primary ui-button--md"
-                    onClick={handleReset}
-                  >
-                    <RotateCcw size={16} />
-                    <span>Send another message</span>
-                  </button>
                 </div>
-              </div>
-            ) : (
-              /* Form State (Default / Submitting / Error) */
-              <form onSubmit={handleSubmit} noValidate className="contact-form">
-                {apiError && (
-                  <div className="form-alert form-alert--error" role="alert">
-                    <AlertCircle size={18} />
-                    <span>{apiError}</span>
-                  </div>
-                )}
+              )}
+
+              {apiError && (
+                <div className="form-alert form-alert--error" role="alert">
+                  <AlertCircle size={18} />
+                  <span>{apiError}</span>
+                </div>
+              )}
 
                 {/* Field: Full Name */}
                 <div className={`form-group ${errors.fullName ? 'has-error' : ''}`}>
@@ -455,13 +467,30 @@ export const ContactSection: React.FC = () => {
                 {/* Submit Primary Button */}
                 <button
                   type="submit"
-                  className="ui-button ui-button--primary ui-button--lg ui-button--full submit-btn"
+                  className={`ui-button ui-button--lg ui-button--full submit-btn ${
+                    isSuccess ? 'ui-button--success-state' : 'ui-button--primary'
+                  }`}
                   disabled={isSubmitting}
+                  style={
+                    isSuccess
+                      ? {
+                          background: '#22C55E',
+                          borderColor: '#22C55E',
+                          color: '#ffffff',
+                          boxShadow: '0 4px 18px rgba(34, 197, 94, 0.4)'
+                        }
+                      : undefined
+                  }
                 >
                   {isSubmitting ? (
                     <>
                       <Loader2 size={18} className="spinner-icon" />
                       <span>Sending to Admin...</span>
+                    </>
+                  ) : isSuccess ? (
+                    <>
+                      <CheckCircle2 size={18} color="#FFFFFF" />
+                      <span>Message Sent Successfully! ✓</span>
                     </>
                   ) : (
                     <>
@@ -471,7 +500,6 @@ export const ContactSection: React.FC = () => {
                   )}
                 </button>
               </form>
-            )}
           </GlassCard>
         </div>
       </Container>

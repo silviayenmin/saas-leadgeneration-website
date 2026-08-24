@@ -363,6 +363,28 @@
   transform: scale(1.04);
 }
 
+.newsletter-btn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* Spinner Animation for Button Loaders */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin,
+.spinner-icon {
+  animation: spin 0.8s linear infinite !important;
+  transform-origin: center center;
+  display: inline-block;
+}
+
 .newsletter-success {
   display: flex;
   align-items: center;

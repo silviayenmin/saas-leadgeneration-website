@@ -20,8 +20,8 @@ export const HeroSection: React.FC = () => {
           <div className="hero-content reveal-fade-left" data-aos="fade-right" data-aos-duration="1000">
             {/* AI Engine Badge */}
             <div className="hero-badge-wrapper">
-              <Badge variant="primary" icon={<Zap size={14} className="text-amber" />}>
-                ⚡ Powered by Groq Llama-3.3 AI Engine
+              <Badge variant="primary" icon={<Zap size={14} className="text-cyan" />}>
+                Powered by Groq Llama-3.3 AI Engine
               </Badge>
             </div>
 

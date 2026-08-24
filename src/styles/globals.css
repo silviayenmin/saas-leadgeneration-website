@@ -93,10 +93,30 @@ button {
   background: transparent;
 }
 
+/* Light Mode Global Scrollbars */
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #CBD5E1 !important;
+  border-radius: 10px !important;
+  border: 1px solid #F1F5F9 !important;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #00897B !important;
+}
+
 /* Firefox Custom Scrollbars */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(14, 165, 164, 0.35) rgba(17, 24, 39, 0.6);
+}
+
+[data-theme="light"] * {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent !important;
 }
 
 /* Global Gradient Text Helper */
@@ -116,7 +136,7 @@ button {
 
 /* Section Common Container */
 .section-wrapper {
-  padding: 96px 0;
+  padding: 60px 0;
   position: relative;
   width: 100%;
   overflow-x: hidden;
@@ -124,13 +144,13 @@ button {
 
 @media (max-width: 1024px) {
   .section-wrapper {
-    padding: 72px 0;
+    padding: 48px 0;
   }
 }
 
 @media (max-width: 640px) {
   .section-wrapper {
-    padding: 48px 0;
+    padding: 36px 0;
   }
 }
 

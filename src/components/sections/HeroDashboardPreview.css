@@ -5,6 +5,7 @@
   width: 100%;
   max-width: 620px;
   margin: 0 auto;
+  padding: 12px 6px;
   box-sizing: border-box;
 }
 
@@ -77,14 +78,17 @@
 .window-title {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: #94A3B8;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 180px;
+  max-width: 360px;
+  flex: 1;
+  margin: 0 12px;
 }
 
 .window-status {
@@ -300,11 +304,13 @@
   font-size: 0.68rem;
   color: #F59E0B;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .rating-count {
   color: #94A3B8;
   font-size: 0.625rem;
+  white-space: nowrap;
 }
 
 .badge-verified {
@@ -551,4 +557,117 @@
     font-size: 0.7rem;
     padding: 0 10px 0 28px;
   }
+}
+
+/* ==========================================================================
+   HERO DASHBOARD PREVIEW — LIGHT MODE OVERRIDES
+   ========================================================================== */
+
+[data-theme="light"] .dashboard-shell {
+  background: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .dashboard-window-bar {
+  background: #F1F5F9 !important;
+  border-bottom-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .window-title {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .dashboard-sidebar {
+  background: #F1F5F9 !important;
+  border-right-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .sidebar-item {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .dashboard-content {
+  background: #F8FAFC !important;
+}
+
+[data-theme="light"] .dashboard-search-bar {
+  background: #FFFFFF !important;
+  border-bottom-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .search-input {
+  background: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .dashboard-leads-list {
+  background: #FFFFFF !important;
+  border-right-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .list-header {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .lead-card {
+  background: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .lead-card--active {
+  background: #F0FDF4 !important;
+  border-color: #22C55E !important;
+}
+
+[data-theme="light"] .lead-name {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .lead-email {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .lead-phone {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .dashboard-map-area {
+  background: #F1F5F9 !important;
+}
+
+[data-theme="light"] .map-grid-overlay {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(3, 113, 114, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px) !important;
+}
+
+[data-theme="light"] .map-location-tag {
+  background: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .pin-tooltip {
+  background: #FFFFFF !important;
+  border-color: #0EA5A4 !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .floating-metric-card {
+  background: #FFFFFF !important;
+  border-color: rgba(14, 165, 164, 0.4) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .metric-label {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .metric-value {
+  color: #0F172A !important;
 }

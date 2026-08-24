@@ -2,8 +2,8 @@
 
 .hero-wrapper {
   position: relative;
-  padding-top: calc(var(--header-height) + 48px);
-  padding-bottom: 96px;
+  padding-top: calc(var(--header-height) + 24px);
+  padding-bottom: 56px;
   overflow: hidden;
   background: var(--bg-main);
   width: 100%;
@@ -121,7 +121,9 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 /* Trust Indicators */
@@ -282,18 +284,26 @@
 /* Desktop Connector Arrows */
 .desktop-step-arrow {
   position: absolute;
-  top: 38px;
-  right: -14px;
-  z-index: 3;
-  color: var(--secondary);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  width: 26px;
-  height: 26px;
+  top: 36px;
+  right: -25px;
+  z-index: 10;
+  color: #0EA5A4;
+  background: #111827;
+  border: 1px solid rgba(14, 165, 164, 0.4);
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 10px rgba(14, 165, 164, 0.2);
+}
+
+[data-theme="light"] .desktop-step-arrow {
+  background: #FFFFFF !important;
+  border: 1px solid #00897B !important;
+  color: #00897B !important;
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.25) !important;
 }
 
 /* --- Mini UI Visualizations --- */
@@ -804,7 +814,8 @@
 .map-radar-box {
   position: relative;
   height: 80px;
-  background: #0E1626;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   overflow: hidden;
 }
@@ -812,17 +823,70 @@
 .radar-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 50% 50%, rgba(14, 165, 164, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(circle at 50% 50%, rgba(14, 165, 164, 0.2) 1.5px, transparent 1.5px);
   background-size: 16px 16px;
 }
 
 .radar-pin {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
 }
 
 .pin-1 { top: 30%; left: 40%; }
 .pin-2 { top: 60%; left: 70%; }
 .pin-3 { top: 25%; left: 80%; }
+
+.pin-pulse {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(14, 165, 164, 0.25);
+  border: 1px solid rgba(14, 165, 164, 0.5);
+  animation: pinPulseWave 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pinPulseWave {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Feature 7 Export Pills Grid */
+.visual-export {
+  margin-top: 4px;
+}
+
+.export-pills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.export-pill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
 
 /* Feature 6 Micro UI */
 .credit-meter-box {
@@ -914,7 +978,7 @@
   font-weight: 600;
   color: var(--text-secondary);
   background: transparent;
-  transition: all var(--transition-fast);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -2304,38 +2368,103 @@
   margin-top: auto;
 }
 
+/* Pricing Section Modern Bottom Glass Bar */
 .pricing-bottom-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-color);
+  margin-top: 32px;
+  padding: 16px 24px;
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .no-card-subtext {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
 
+.shield-icon-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(14, 165, 164, 0.15);
+  border: 1px solid rgba(14, 165, 164, 0.3);
+  color: #0EA5A4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .compare-matrix-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--secondary);
-  transition: color var(--transition-fast);
+  gap: 8px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #0EA5A4;
+  background: rgba(14, 165, 164, 0.12);
+  border: 1px solid rgba(14, 165, 164, 0.3);
+  padding: 8px 18px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .compare-matrix-btn:hover {
-  color: var(--primary-hover);
-  text-decoration: underline;
+  background: rgba(14, 165, 164, 0.25);
+  border-color: #0EA5A4;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(14, 165, 164, 0.3);
+}
+
+.matrix-arrow-icon {
+  transition: transform 0.2s ease;
+}
+
+.compare-matrix-btn:hover .matrix-arrow-icon {
+  transform: translate(2px, -2px);
+}
+
+/* Light Mode Overrides for Pricing Bottom Bar */
+[data-theme="light"] .pricing-bottom-bar {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .no-card-subtext {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .shield-icon-badge {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+  color: #00695C !important;
+}
+
+[data-theme="light"] .compare-matrix-btn {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+  color: #00695C !important;
+}
+
+[data-theme="light"] .compare-matrix-btn:hover {
+  background: #00897B !important;
+  border-color: #00897B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(0, 137, 123, 0.3) !important;
 }
 
 /* Modern Feature Matrix Modal Table & Custom Horizontal Scrollbar */
@@ -4598,10 +4727,15 @@
 .details-nav-header {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 12px;
   margin-bottom: 24px;
-  padding-bottom: 16px;
+  padding: 12px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   flex-wrap: wrap;
 }
 
@@ -4616,19 +4750,24 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .details-header-brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .details-comp-title h2 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .details-platform-sub {
@@ -4661,38 +4800,42 @@
 .details-badges-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
 .badge-stat {
   background: #132238;
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-secondary);
-  font-size: 0.75rem;
-  padding: 4px 10px;
+  font-size: 0.725rem;
+  padding: 3px 8px;
   border-radius: 6px;
+  white-space: nowrap;
 }
 
 .badge-link-pill {
   background: rgba(14, 165, 164, 0.15);
   color: #0EA5A4;
-  font-size: 0.75rem;
+  font-size: 0.725rem;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 4px;
+  white-space: nowrap;
 }
 
 .badge-stage-pill {
   background: rgba(59, 130, 246, 0.15);
   color: #3B82F6;
-  font-size: 0.75rem;
+  font-size: 0.725rem;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 6px;
+  white-space: nowrap;
 }
 
 /* Split Grid for Details */
@@ -4922,22 +5065,31 @@
 
 .pitch-draft-content {
   font-size: 0.775rem;
+  padding: 14px 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .draft-meta-row {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-secondary);
+}
+
+.draft-body-text {
+  padding: 4px 12px 4px 12px;
+  box-sizing: border-box;
 }
 
 .draft-body-text p {
   margin-bottom: 8px;
   color: #e2e8f0;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .btn-convert-lg-solid {
@@ -5971,6 +6123,1082 @@
     font-size: 0.725rem !important;
     padding: 2px 6px !important;
   }
+}
+
+/* ==========================================================================
+   HOW IT WORKS SECTION — LIGHT MODE OVERRIDES
+   ========================================================================== */
+
+[data-theme="light"] .how-it-works-wrapper {
+  background: #F8FAFC !important;
+}
+
+[data-theme="light"] .workflow-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .workflow-card:hover {
+  border-color: rgba(14, 165, 164, 0.5) !important;
+  box-shadow: 0 14px 36px -10px rgba(14, 165, 164, 0.15) !important;
+}
+
+[data-theme="light"] .step-number {
+  background: rgba(3, 113, 114, 0.1) !important;
+  color: #037172 !important;
+  border-color: rgba(3, 113, 114, 0.25) !important;
+}
+
+[data-theme="light"] .step-icon-box {
+  background: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+  color: #037172 !important;
+}
+
+[data-theme="light"] .step-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .step-description {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .desktop-step-arrow {
+  background: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #037172 !important;
+}
+
+[data-theme="light"] .mini-ui {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .mini-search-box {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+}
+
+[data-theme="light"] .mini-search-text {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .mini-biz-name {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .mini-email-row {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .mini-pitch-preview {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .kanban-card {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+}
+
+[data-theme="light"] .col-label {
+  color: #64748B !important;
+}
+
+/* ==========================================================================
+   PRODUCT SHOWCASE SECTION — LIGHT MODE THEME OVERRIDES (MATCHING SAAS APP)
+   ========================================================================== */
+
+[data-theme="light"] .product-showcase-wrapper {
+  background: #F8FAFC !important;
+}
+
+[data-theme="light"] .showcase-tabs-nav {
+  background: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .showcase-tab-btn {
+  color: #475569 !important;
+  background: transparent !important;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease !important;
+}
+
+[data-theme="light"] .showcase-tab-btn span,
+[data-theme="light"] .showcase-tab-btn svg {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .showcase-tab-btn:hover {
+  color: #0F172A !important;
+  background: #F1F5F9 !important;
+}
+
+[data-theme="light"] .showcase-tab-btn:hover span,
+[data-theme="light"] .showcase-tab-btn:hover svg {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .showcase-tab-btn.active {
+  color: #FFFFFF !important;
+  background: linear-gradient(135deg, #00897B 0%, #00695C 100%) !important;
+  box-shadow: 0 4px 14px rgba(0, 137, 123, 0.35) !important;
+}
+
+[data-theme="light"] .showcase-tab-btn.active span,
+[data-theme="light"] .showcase-tab-btn.active svg {
+  color: #FFFFFF !important;
+}
+
+/* SaaS Window Outer Shell */
+[data-theme="light"] .showcase-window {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .showcase-window-bar {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .radar-circle-pulse {
+  stroke: #00897B !important;
+  fill: rgba(0, 137, 123, 0.18) !important;
+}
+
+/* CONTACT SECTION VISUAL RADAR CARD LIGHT MODE OVERRIDES */
+[data-theme="light"] .contact-visual-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  outline: none !important;
+}
+
+[data-theme="light"] .contact-radar-grid {
+  background: radial-gradient(circle at 50% 50%, rgba(224, 242, 241, 0.8) 0%, #FFFFFF 70%) !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+  outline: none !important;
+}
+
+[data-theme="light"] .contact-radar-grid::before {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px) !important;
+}
+
+[data-theme="light"] .node-tooltip {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #0F172A !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .radar-lead-chip {
+  background: #FFFFFF !important;
+  border: 1px solid #00897B !important;
+  color: #00897B !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 16px rgba(0, 137, 123, 0.2) !important;
+}
+
+[data-theme="light"] .benefit-item {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] .benefit-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .benefit-text {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .info-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .info-description {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .window-divider {
+  color: #CBD5E1 !important;
+}
+
+[data-theme="light"] .saas-logo-text {
+  color: #00897B !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .window-divider {
+  color: #CBD5E1 !important;
+}
+
+[data-theme="light"] .saas-page-title {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .saas-credits-pill {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+  color: #004D40 !important;
+}
+
+[data-theme="light"] .credits-upgrade-btn {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .tool-icon {
+  background: #F1F5F9 !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .user-avatar-circle {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+/* Discovery Wizard Step Switcher */
+[data-theme="light"] .discovery-step-switcher-bar {
+  background: #F8FAFC !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .switcher-label {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .step-switch-btn {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .step-switch-btn.active {
+  background: #00897B !important;
+  border-color: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+/* Window Inner Workspace Body */
+[data-theme="light"] .showcase-window-body {
+  background: #F4F6F8 !important;
+}
+
+[data-theme="light"] .intro-subtitle {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .stepper-node .stepper-icon-circle {
+  background: #FFFFFF !important;
+  border: 2px solid #CBD5E1 !important;
+  color: #64748B !important;
+}
+
+[data-theme="light"] .stepper-node.active .stepper-icon-circle {
+  background: #00897B !important;
+  border-color: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .stepper-label {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .stepper-line {
+  background: #E2E8F0 !important;
+}
+
+[data-theme="light"] .stepper-line.filled {
+  background: #00897B !important;
+}
+
+/* Wizard Form Cards & Inputs */
+[data-theme="light"] .saas-card-wizard {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .title-icon-badge {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+}
+
+[data-theme="light"] .wizard-title-row h3 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .wizard-desc {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .form-label {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .form-input-box {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .form-input-text {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .form-footnote {
+  color: #64748B !important;
+}
+
+/* Google Maps Graphic in Light Mode */
+[data-theme="light"] .preview-map-title {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .preview-map-container {
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .map-svg rect:first-child {
+  fill: #E8F5E9 !important; /* Soft Map Land Green */
+}
+
+[data-theme="light"] .map-svg path:first-of-type {
+  fill: #E1F5FE !important; /* Soft Blue Water Bay */
+}
+
+[data-theme="light"] .map-city-tag {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #374151 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .map-city-tag.tag-chennai-main {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+/* Primary Action Buttons */
+[data-theme="light"] .saas-btn-continue {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(0, 137, 123, 0.3) !important;
+}
+
+[data-theme="light"] .saas-btn-continue:hover {
+  background: #00695C !important;
+}
+
+/* TAB 2: MAPS SCANS & HISTORY LIGHT MODE OVERRIDES */
+[data-theme="light"] .scans-page-heading {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .scans-page-sub {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .btn-scans-solid {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .btn-scans-outlined {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #374151 !important;
+}
+
+[data-theme="light"] .kpi-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .kpi-value {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .kpi-label {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .scans-filter-toolbar {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .scans-search-input-box {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .scans-input {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .dropdown-chip {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #374151 !important;
+}
+
+[data-theme="light"] .refresh-icon-btn {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .scans-table-wrapper {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .scans-data-table thead {
+  background: #F8FAFC !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .scans-data-table th {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .scans-data-table td {
+  border-bottom: 1px solid #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .comp-name {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .comp-address {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .phone-text,
+[data-theme="light"] .email-addr {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .btn-convert-crm {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+/* TAB 3: LEAD DETAILS & AI COPYWRITER LIGHT MODE OVERRIDES */
+[data-theme="light"] .details-nav-header {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .details-comp-title h2 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .badge-stat {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #374151 !important;
+}
+
+[data-theme="light"] .badge-link-pill {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+  color: #00695C !important;
+}
+
+[data-theme="light"] .details-card-box {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .card-box-head h4 {
+  color: #00897B !important;
+}
+
+[data-theme="light"] .field-input-static {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .ai-copywriter-panel {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .btn-generate-pitch {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+/* TAB 4: OUTREACH CRM PIPELINE LIGHT MODE OVERRIDES */
+[data-theme="light"] .kanban-pipeline-grid {
+  background: #F4F6F8 !important;
+}
+
+[data-theme="light"] .kanban-column {
+  background: #F1F5F9 !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .kanban-column-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .kanban-card-item {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .kanban-lead-name {
+  color: #0F172A !important;
+}
+
+/* ALL TAB PANES & BACKGROUND OVERRIDES IN LIGHT MODE */
+[data-theme="light"] .showcase-window-body,
+[data-theme="light"] .tab-pane,
+[data-theme="light"] .scans-saas-pane,
+[data-theme="light"] .discovery-saas-pane,
+[data-theme="light"] .lead-details-saas-pane,
+[data-theme="light"] .crm-saas-pane {
+  background: #F4F6F8 !important;
+}
+
+[data-theme="light"] .scans-header-row {
+  margin-bottom: 20px;
+}
+
+[data-theme="light"] .scans-page-heading {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .scans-page-sub {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .scans-data-table {
+  background: #FFFFFF !important;
+}
+
+[data-theme="light"] .scans-data-table thead,
+[data-theme="light"] .scans-data-table tr {
+  background: #FFFFFF !important;
+}
+
+[data-theme="light"] .scans-data-table th {
+  background: #F8FAFC !important;
+  color: #475569 !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .scans-data-table td {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+/* TAB 3: LEAD DETAILS & AI COPYWRITER LIGHT MODE OVERRIDES */
+[data-theme="light"] .details-nav-header {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .btn-back-square {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #374151 !important;
+}
+
+[data-theme="light"] .details-comp-title h2 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .details-platform-sub {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .badge-stat {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #374151 !important;
+}
+
+[data-theme="light"] .badge-link-pill {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+  color: #00695C !important;
+}
+
+[data-theme="light"] .badge-stage-pill {
+  background: #F1F5F9 !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .details-card-box {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] .card-box-head h4,
+[data-theme="light"] .card-box-head-flex h4 {
+  color: #00897B !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .p-field label {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .field-input-static {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .btn-find-email,
+[data-theme="light"] .btn-find-team {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+  color: #00695C !important;
+}
+
+[data-theme="light"] .team-source-tag,
+[data-theme="light"] .source-tag {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .team-item-row {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .member-name {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .member-role {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .no-email-tag {
+  background: #FEF2F2 !important;
+  border: 1px solid #FECACA !important;
+  color: #DC2626 !important;
+}
+
+[data-theme="light"] .btn-retry {
+  background: #F1F5F9 !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .no-reply-pill {
+  background: #F1F5F9 !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #64748B !important;
+}
+
+/* AI COPYWRITER & DRAFT CANVAS */
+[data-theme="light"] .copywriter-box {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .btn-gen-pitch-solid {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .copywriter-editor-canvas {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .pitch-draft-content {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .draft-meta-row {
+  background: #F1F5F9 !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .draft-meta-row span {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .draft-meta-row strong {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .draft-body-text,
+[data-theme="light"] .draft-body-text p,
+[data-theme="light"] .draft-body-text span,
+[data-theme="light"] .pitch-draft-content p {
+  color: #0F172A !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="light"] .draft-body-text strong {
+  color: #00695C !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .draft-body-text em {
+  color: #00897B !important;
+  font-style: italic !important;
+}
+
+[data-theme="light"] .copywriter-placeholder {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .btn-convert-lg-solid {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(0, 137, 123, 0.3) !important;
+}
+
+[data-theme="light"] .btn-action-tile {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #374151 !important;
+}
+
+[data-theme="light"] .btn-action--green {
+  background: #00897B !important;
+  border-color: #00897B !important;
+  color: #FFFFFF !important;
+}
+
+/* TAB 4: OUTREACH CRM PIPELINE LIGHT MODE OVERRIDES */
+[data-theme="light"] .crm-banner-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .crm-banner-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .crm-banner-sub {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .btn-crm-refresh {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #374151 !important;
+}
+
+[data-theme="light"] .crm-filter-toolbar {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .crm-search-box {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .crm-input {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .crm-kanban-board-saas {
+  background: #F4F6F8 !important;
+}
+
+[data-theme="light"] .crm-col-box {
+  background: #F1F5F9 !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .col-title-text {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .col-count-pill {
+  background: #E2E8F0 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .crm-lead-card-saas {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .card-comp-name {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .tag-geo-pill {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+  color: #00695C !important;
+}
+
+[data-theme="light"] .c-row {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .match-pill-amber {
+  background: #FEF3C7 !important;
+  border: 1px solid #FDE68A !important;
+  color: #B45309 !important;
+}
+
+/* ==========================================================================
+   DISCOVERY WIZARD STEPS 2, 3, 4 — LIGHT MODE OVERRIDES
+   ========================================================================== */
+
+/* Step 2 Filters */
+[data-theme="light"] .back-step-link {
+  color: #00897B !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .select-box {
+  background: #F8FAFC !important;
+  border: 1px solid #CBD5E1 !important;
+}
+
+[data-theme="light"] .select-val {
+  color: #0F172A !important;
+  font-weight: 600 !important;
+}
+
+/* Step 3 Summary & Target Estimate Card */
+[data-theme="light"] .summary-box-card {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .summary-row {
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+[data-theme="light"] .summary-label {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .summary-val {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .badge-teal-code {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+  color: #00695C !important;
+}
+
+[data-theme="light"] .targets-estimate-card {
+  background: #E0F2F1 !important;
+  border: 1px solid #B2DFDB !important;
+}
+
+[data-theme="light"] .estimate-number {
+  color: #00695C !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .estimate-title {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .estimate-sub {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .btn-launch {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(0, 137, 123, 0.35) !important;
+}
+
+/* Step 4 Loading Engaged Scraper */
+[data-theme="light"] .saas-loading-modal {
+  background: #F4F6F8 !important;
+}
+
+[data-theme="light"] .loading-card-box {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .loading-title-text {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .loading-subtext {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .progress-bar-container {
+  background: #E2E8F0 !important;
+}
+
+[data-theme="light"] .progress-bar-fill {
+  background: linear-gradient(90deg, #00897B 0%, #004D40 100%) !important;
+}
+
+[data-theme="light"] .hint-btn {
+  background: #FFFFFF !important;
+  border: 1px solid #00897B !important;
+  color: #00897B !important;
+  font-weight: 600 !important;
+}
+
+/* SLEEK THIN SCROLLBARS FOR SAAS DASHBOARD ELEMENTS */
+.dashboard-leads-list::-webkit-scrollbar,
+.discovery-leads-column::-webkit-scrollbar,
+.scans-table-wrapper::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.dashboard-leads-list::-webkit-scrollbar-track,
+.discovery-leads-column::-webkit-scrollbar-track,
+.scans-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dashboard-leads-list::-webkit-scrollbar-thumb,
+.discovery-leads-column::-webkit-scrollbar-thumb,
+.scans-table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 164, 0.4);
+  border-radius: 99px;
+}
+
+[data-theme="light"] .dashboard-leads-list::-webkit-scrollbar-thumb,
+[data-theme="light"] .discovery-leads-column::-webkit-scrollbar-thumb,
+[data-theme="light"] .scans-table-wrapper::-webkit-scrollbar-thumb {
+  background: #CBD5E1 !important;
+  border-radius: 99px !important;
+}
+
+[data-theme="light"] .dashboard-leads-list::-webkit-scrollbar-thumb:hover,
+[data-theme="light"] .discovery-leads-column::-webkit-scrollbar-thumb:hover,
+[data-theme="light"] .scans-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #00897B !important;
+}
+
+/* TARGET SCAN LOCATION PREVIEW MAP CITY TAGS LIGHT MODE OVERRIDES */
+[data-theme="light"] .map-city-tag {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #0F172A !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .map-city-tag.tag-chennai-main {
+  background: #00897B !important;
+  color: #FFFFFF !important;
+  border: 1px solid #00897B !important;
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.35) !important;
+}
+
+[data-theme="light"] .preview-map-graphic {
+  background: #E8F5E9 !important;
+}
+
+/* ==========================================================================
+   FINAL CTA SECTION LIGHT MODE OVERRIDES
+   ========================================================================== */
+
+[data-theme="light"] .final-cta-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F0FDFA 50%, #E0F2F1 100%) !important;
+  border: 1px solid #B2DFDB !important;
+  box-shadow: 0 20px 50px -10px rgba(0, 137, 123, 0.15), 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .final-cta-card::before {
+  background: linear-gradient(90deg, #00695C, #00897B, #0EA5A4) !important;
+}
+
+[data-theme="light"] .cta-top-badge {
+  background: #E0F2F1 !important;
+  color: #00695C !important;
+  border: 1px solid #B2DFDB !important;
+}
+
+[data-theme="light"] .cta-headline {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .cta-subheadline {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="light"] .cta-trust-note {
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .cta-trust-note span {
+  color: #00695C !important;
+}
+
+[data-theme="light"] .cta-trust-note .dot-sep {
+  color: #94A3B8 !important;
+}
+
+[data-theme="light"] .floating-badge {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .floating-badge--left {
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+[data-theme="light"] .floating-badge--right {
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+[data-theme="light"] .cta-bg-glow {
+  background: radial-gradient(circle, rgba(0, 137, 123, 0.12) 0%, rgba(224, 242, 241, 0.08) 50%, transparent 70%) !important;
+}
+
+[data-theme="light"] .cta-grid-pattern {
+  background-image: radial-gradient(circle at 50% 50%, rgba(0, 137, 123, 0.1) 1px, transparent 1px) !important;
 }
 
 

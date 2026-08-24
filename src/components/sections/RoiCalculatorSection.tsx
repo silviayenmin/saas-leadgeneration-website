@@ -15,6 +15,7 @@ import { SectionHeading } from '../ui/SectionHeading';
 import { GlassCard } from '../ui/GlassCard';
 import { Button } from '../ui/Button';
 import { AnimatedCounter } from '../ui/AnimatedCounter';
+import { SITE_CONFIG } from '../../config/siteConfig';
 import './sections.css';
 
 export const RoiCalculatorSection: React.FC = () => {
@@ -237,7 +238,7 @@ export const RoiCalculatorSection: React.FC = () => {
                   variant="primary"
                   size="lg"
                   fullWidth
-                  href="#pricing"
+                  href={SITE_CONFIG.saasProductUrl}
                   icon={<ArrowRight size={18} />}
                 >
                   Get Started with {recommendedPlanName}
