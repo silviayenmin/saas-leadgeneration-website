@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import './sections.css';
@@ -67,6 +67,8 @@ export const FaqSection: React.FC = () => {
               <div
                 key={index}
                 className={`faq-accordion-item ${isOpen ? 'faq-item--open' : ''}`}
+                data-aos="fade-up"
+                data-aos-delay={(index % 4) * 80}
               >
                 <button
                   type="button"
@@ -96,12 +98,6 @@ export const FaqSection: React.FC = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Support Subtext */}
-        <div className="faq-footer-note">
-          <HelpCircle size={16} className="text-cyan" />
-          <span>Still have questions? Chat with our live support team 24/7.</span>
         </div>
       </Container>
     </section>

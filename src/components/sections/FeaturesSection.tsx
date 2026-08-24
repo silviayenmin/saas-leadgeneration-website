@@ -40,7 +40,7 @@ export const FeaturesSection: React.FC = () => {
         {/* Asymmetric Bento Grid Layout */}
         <div className="bento-grid">
           {/* Feature 1 — Large Bento Card */}
-          <GlassCard className="bento-card bento-card--large hover-lift" padding="lg">
+          <GlassCard className="bento-card bento-card--large hover-lift" padding="lg" data-aos="fade-up" data-aos-delay="100">
             <div className="bento-card-top">
               <div className="bento-icon-box bento-icon--primary">
                 <MapPin size={24} />
@@ -82,7 +82,7 @@ export const FeaturesSection: React.FC = () => {
           </GlassCard>
 
           {/* Feature 2 — Medium Bento Card */}
-          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg">
+          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg" data-aos="fade-up" data-aos-delay="200">
             <div className="bento-card-top">
               <div className="bento-icon-box bento-icon--cyan">
                 <MailCheck size={22} />
@@ -121,7 +121,7 @@ export const FeaturesSection: React.FC = () => {
           </GlassCard>
 
           {/* Feature 3 — Medium Bento Card */}
-          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg">
+          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg" data-aos="fade-up" data-aos-delay="100">
             <div className="bento-card-top">
               <div className="bento-icon-box bento-icon--purple">
                 <Sparkles size={22} />
@@ -154,7 +154,7 @@ export const FeaturesSection: React.FC = () => {
           </GlassCard>
 
           {/* Feature 4 — Large Bento Card */}
-          <GlassCard className="bento-card bento-card--large hover-lift" padding="lg">
+          <GlassCard className="bento-card bento-card--large hover-lift" padding="lg" data-aos="fade-up" data-aos-delay="200">
             <div className="bento-card-top">
               <div className="bento-icon-box bento-icon--blue">
                 <Kanban size={24} />
@@ -196,7 +196,7 @@ export const FeaturesSection: React.FC = () => {
           </GlassCard>
 
           {/* Feature 5 — Medium Bento Card */}
-          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg">
+          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg" data-aos="fade-up" data-aos-delay="100">
             <div className="bento-card-top">
               <div className="bento-icon-box bento-icon--emerald">
                 <Map size={22} />
@@ -233,7 +233,7 @@ export const FeaturesSection: React.FC = () => {
           </GlassCard>
 
           {/* Feature 6 — Medium Bento Card */}
-          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg">
+          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg" data-aos="fade-up" data-aos-delay="200">
             <div className="bento-card-top">
               <div className="bento-icon-box bento-icon--amber">
                 <Coins size={22} />
@@ -267,7 +267,7 @@ export const FeaturesSection: React.FC = () => {
           </GlassCard>
 
           {/* Feature 7 — Medium Bento Card (Fills 3rd column of Row 3) */}
-          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg">
+          <GlassCard className="bento-card bento-card--medium hover-lift" padding="lg" data-aos="fade-up" data-aos-delay="300">
             <div className="bento-card-top">
               <div className="bento-icon-box bento-icon--cyan">
                 <Download size={22} />

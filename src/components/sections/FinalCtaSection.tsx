@@ -13,7 +13,7 @@ export const FinalCtaSection: React.FC = () => {
       <div className="cta-grid-pattern" />
 
       <Container size="lg">
-        <div className="final-cta-card">
+        <div className="final-cta-card" data-aos="zoom-in">
           {/* Floating UI Badges */}
           <div className="floating-badge floating-badge--left">
             <CheckCircle2 size={14} color="#22C55E" />

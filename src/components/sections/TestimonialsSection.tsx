@@ -65,8 +65,14 @@ export const TestimonialsSection: React.FC = () => {
 
         {/* 3 Testimonial Cards Grid */}
         <div className="testimonials-grid">
-          {testimonials.map((item) => (
-            <GlassCard key={item.id} className="testimonial-card" padding="lg">
+          {testimonials.map((item, idx) => (
+            <GlassCard
+              key={item.id}
+              className="testimonial-card hover-lift"
+              padding="lg"
+              data-aos="fade-up"
+              data-aos-delay={(idx + 1) * 100}
+            >
               <div className="testimonial-card-top">
                 {/* 5-Star Rating */}
                 <div className="star-rating-row" aria-label="5 out of 5 stars rating">

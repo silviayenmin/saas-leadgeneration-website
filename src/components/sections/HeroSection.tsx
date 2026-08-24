@@ -4,6 +4,7 @@ import { Container } from '../ui/Container';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { HeroDashboardPreview } from './HeroDashboardPreview';
+import { SITE_CONFIG } from '../../config/siteConfig';
 import './sections.css';
 
 export const HeroSection: React.FC = () => {
@@ -15,8 +16,8 @@ export const HeroSection: React.FC = () => {
 
       <Container size="lg" className="hero-container">
         <div className="hero-grid">
-          {/* Left Column: Copy & Actions */}
-          <div className="hero-content animate-fade-up">
+          {/* Left Column: Copy & Actions — Comes from Left */}
+          <div className="hero-content reveal-fade-left" data-aos="fade-right" data-aos-duration="1000">
             {/* AI Engine Badge */}
             <div className="hero-badge-wrapper">
               <Badge variant="primary" icon={<Zap size={14} className="text-amber" />}>
@@ -41,11 +42,11 @@ export const HeroSection: React.FC = () => {
               <Button
                 variant="primary"
                 size="lg"
-                href="#product"
+                href={SITE_CONFIG.saasProductUrl}
                 icon={<ArrowRight size={18} />}
                 className="hero-btn-primary"
               >
-                Try Live Demo
+                Get Started
               </Button>
 
               <Button
@@ -76,8 +77,8 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Interactive SaaS Product Visual */}
-          <div className="hero-visual animate-fade-up">
+          {/* Right Column: Interactive SaaS Product Visual — Comes from Right */}
+          <div className="hero-visual reveal-fade-right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
             <HeroDashboardPreview />
           </div>
         </div>
