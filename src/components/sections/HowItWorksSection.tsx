@@ -38,11 +38,11 @@ export const HowItWorksSection: React.FC = () => {
         <div className="mini-ui mini-ui-search">
           <div className="mini-search-box">
             <Search size={14} className="text-muted" />
-            <span className="mini-search-text">Plumbers in Chicago, IL</span>
+            <span className="mini-search-text">Software Development Company in Austin</span>
           </div>
           <div className="mini-map-tag">
             <MapPin size={12} color="#0EA5A4" />
-            <span>Google Maps</span>
+            <span>Llama-3.3 Auto-Expand</span>
           </div>
         </div>
       ),
@@ -55,14 +55,14 @@ export const HowItWorksSection: React.FC = () => {
       visual: (
         <div className="mini-ui mini-ui-enrich">
           <div className="mini-card-head">
-            <span className="mini-biz-name">Apex Plumbing Co.</span>
+            <span className="mini-biz-name">Vortex Global Software</span>
             <span className="mini-badge-verified">
               <CheckCircle2 size={10} /> Verified
             </span>
           </div>
           <div className="mini-email-row">
             <Mail size={11} className="text-muted" />
-            <span>info@apexchicago.com</span>
+            <span>contact@vortexsoftware.io</span>
           </div>
           <div className="mini-enrich-tags">
             <div className="mini-socials">
@@ -71,7 +71,7 @@ export const HowItWorksSection: React.FC = () => {
               <Globe size={11} />
             </div>
             <span className="mini-tech-badge">
-              <Code size={10} /> WordPress
+              <Code size={10} /> 4.9★ (40% AI Match)
             </span>
           </div>
         </div>
@@ -89,11 +89,11 @@ export const HowItWorksSection: React.FC = () => {
             <span>AI Personalization</span>
           </div>
           <div className="mini-tags-row">
-            <span className="mini-tag">{"{{Owner}}"}</span>
+            <span className="mini-tag">{"{{Company}}"}</span>
             <span className="mini-tag">{"{{Pain_Point}}"}</span>
           </div>
           <div className="mini-pitch-preview">
-            "Hi John, noticed Apex Plumbing has a 4.9★ rating..."
+            "Noticed Vortex Global's 4.9★ rating on Google Maps..."
           </div>
           <button className="mini-btn-gen" onClick={(e) => e.preventDefault()}>
             <Zap size={10} /> Generate Pitch

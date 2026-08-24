@@ -2,16 +2,10 @@ import React from 'react';
 import { ArrowRight, Sparkles, Zap, CheckCircle2 } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
+import { SITE_CONFIG } from '../../config/siteConfig';
 import './sections.css';
 
 export const FinalCtaSection: React.FC = () => {
-  const scrollToSection = (sectionId: string) => {
-    const targetElement = document.getElementById(sectionId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id="final-cta" className="section-wrapper final-cta-wrapper">
       {/* Radial Background Glow & Map Grid Pattern */}
@@ -52,19 +46,11 @@ export const FinalCtaSection: React.FC = () => {
             <Button
               variant="primary"
               size="lg"
-              href="/signup"
+              href={SITE_CONFIG.saasProductUrl}
               icon={<ArrowRight size={18} />}
               className="hero-btn-primary"
             >
-              Start Free — Get 25 Credits
-            </Button>
-
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => scrollToSection('product')}
-            >
-              View Product Demo
+              Get Started
             </Button>
           </div>
 

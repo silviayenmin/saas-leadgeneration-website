@@ -6,6 +6,7 @@ import { Button } from '../ui/Button';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { scrollToSection } from '../../utils/helpers';
 import { NavItem } from '../../types';
+import { SITE_CONFIG } from '../../config/siteConfig';
 import './layout.css';
 
 const NAV_ITEMS: NavItem[] = [
@@ -71,16 +72,13 @@ export const Navbar: React.FC = () => {
         {/* Right: Theme Switcher & Desktop Actions */}
         <div className="navbar__actions">
           <ThemeToggle />
-          <Button variant="ghost" size="sm" href="/login">
-            Login
-          </Button>
           <Button
             variant="primary"
             size="sm"
-            href="/signup"
+            href={SITE_CONFIG.saasProductUrl}
             icon={<ArrowRight size={16} />}
           >
-            Get Started Free
+            Get Started
           </Button>
         </div>
 
@@ -118,21 +116,13 @@ export const Navbar: React.FC = () => {
           </ul>
           <div className="navbar__mobile-actions">
             <Button
-              variant="ghost"
-              fullWidth
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Login
-            </Button>
-            <Button
               variant="primary"
               fullWidth
-              href="/signup"
+              href={SITE_CONFIG.saasProductUrl}
               icon={<ArrowRight size={16} />}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Get Started Free
+              Get Started
             </Button>
           </div>
         </div>

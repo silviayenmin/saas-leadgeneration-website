@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MapPin } from 'lucide-react';
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Send,
+  CheckCircle2,
+  Loader2
+} from 'lucide-react';
 import { Container } from '../ui/Container';
+import { ADMIN_EMAIL, submitNewsletterSubscription } from '../../services/contactService';
 import './layout.css';
 
 export const Footer: React.FC = () => {
   const location = useLocation();
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSuccess, setNewsletterSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     if (location.pathname === '/') {
@@ -17,30 +28,76 @@ export const Footer: React.FC = () => {
     }
   };
 
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim() || isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      await submitNewsletterSubscription(newsletterEmail);
+      setNewsletterSuccess(true);
+      setNewsletterEmail('');
+      setTimeout(() => setNewsletterSuccess(false), 5000);
+    } catch (err) {
+      console.error('Newsletter error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="site-footer">
+      {/* Ambient Radial Glow */}
+      <div className="footer-bg-glow" />
+
       <Container size="lg">
+        {/* 4-Column Modern Grid */}
         <div className="footer-grid">
-          {/* Left Column: Brand & Summary */}
+          {/* COLUMN 1: Brand & Office Location Info */}
           <div className="footer-brand-col">
             <Link to="/" className="footer-logo-link">
               <div className="footer-logo-icon">
-                <MapPin size={22} color="#0EA5A4" />
+                <MapPin size={22} color="#FFFFFF" />
               </div>
-              <span className="footer-brand-name">MapFlow AI</span>
+              <span className="footer-brand-name">
+                MapFlow<span className="text-cyan"> AI</span>
+              </span>
             </Link>
             <p className="footer-brand-desc">
-              Turn Google Maps into your automated B2B lead engine.
+              Automate Google Maps lead discovery, extract direct owner contacts, and scale your outbound sales pipeline with AI.
             </p>
+
+            <div className="footer-contact-details">
+              <div className="contact-detail-item">
+                <MapPin size={16} className="detail-icon" />
+                <span className="detail-text">
+                  22, 5th Cross Street, Narayanasamy Naicker Nagar, Nedunchezian Salai, Sholinganallur, Chennai, Greater Chennai, Tamil Nadu 600119
+                </span>
+              </div>
+
+              <div className="contact-detail-item">
+                <Phone size={16} className="detail-icon" />
+                <a href="tel:+919876543210" className="detail-link">
+                  +91 9876543210
+                </a>
+              </div>
+
+              <div className="contact-detail-item">
+                <Mail size={16} className="detail-icon" />
+                <a href={`mailto:${ADMIN_EMAIL}`} className="detail-link">
+                  {ADMIN_EMAIL}
+                </a>
+              </div>
+            </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* COLUMN 2: Quick Navigation */}
           <div className="footer-links-col">
             <h4 className="footer-col-title">Navigation</h4>
             <ul className="footer-links-list">
               <li>
                 <a href="#product" onClick={(e) => handleSectionClick(e, 'product')}>
-                  Product
+                  Product Features
                 </a>
               </li>
               <li>
@@ -50,41 +107,113 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#pricing" onClick={(e) => handleSectionClick(e, 'pricing')}>
-                  Pricing
+                  Pricing Plans
                 </a>
               </li>
               <li>
                 <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')}>
-                  Contact
+                  Contact Support
                 </a>
               </li>
               <li>
                 <a href="#faq" onClick={(e) => handleSectionClick(e, 'faq')}>
-                  FAQ
+                  FAQ &amp; Help
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Account Links */}
+          {/* COLUMN 3: Platform Capabilities */}
           <div className="footer-links-col">
-            <h4 className="footer-col-title">Account</h4>
+            <h4 className="footer-col-title">Capabilities</h4>
             <ul className="footer-links-list">
               <li>
-                <Link to="/login">Login</Link>
+                <a href="#product" onClick={(e) => handleSectionClick(e, 'product')}>
+                  Google Maps Scraper
+                </a>
               </li>
               <li>
-                <Link to="/signup">Get Started</Link>
+                <a href="#product" onClick={(e) => handleSectionClick(e, 'product')}>
+                  AI Cold Email Writer
+                </a>
+              </li>
+              <li>
+                <a href="#product" onClick={(e) => handleSectionClick(e, 'product')}>
+                  Verified Owner Emails
+                </a>
+              </li>
+              <li>
+                <a href="#product" onClick={(e) => handleSectionClick(e, 'product')}>
+                  Pipeline Management
+                </a>
+              </li>
+              <li>
+                <a href="#product" onClick={(e) => handleSectionClick(e, 'product')}>
+                  CRM &amp; CSV Export
+                </a>
               </li>
             </ul>
           </div>
+
+          {/* COLUMN 4: Newsletter & System Status */}
+          <div className="footer-newsletter-col">
+            <h4 className="footer-col-title">Stay Updated</h4>
+            <p className="newsletter-desc">
+              Subscribe for weekly outbound strategy insights and lead generation tips.
+            </p>
+
+            {newsletterSuccess ? (
+              <div className="newsletter-success">
+                <CheckCircle2 size={16} color="#22C55E" />
+                <span>Thank you for subscribing!</span>
+              </div>
+            ) : (
+              <form onSubmit={handleNewsletterSubmit} className="newsletter-form">
+                <input
+                  type="email"
+                  className="newsletter-input"
+                  placeholder="Enter your email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="newsletter-btn"
+                  aria-label="Subscribe"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
+                </button>
+              </form>
+            )}
+
+            {/* Live System Status Indicator */}
+            <div className="footer-status-badge">
+              <span className="status-dot-live" />
+              <span>Systems Operational • 99.9% Uptime</span>
+            </div>
+          </div>
         </div>
 
-        {/* Footer Bottom Bar */}
+        {/* Footer Bottom Legal Bar */}
         <div className="footer-bottom-bar">
           <p className="footer-copyright">
-            © 2026 MapFlow AI. All rights reserved.
+            © {new Date().getFullYear()} MapFlow AI. All rights reserved.
           </p>
+          <div className="footer-legal-links">
+            <a href="#faq" onClick={(e) => handleSectionClick(e, 'faq')}>
+              Privacy Policy
+            </a>
+            <span className="legal-sep">•</span>
+            <a href="#faq" onClick={(e) => handleSectionClick(e, 'faq')}>
+              Terms of Service
+            </a>
+            <span className="legal-sep">•</span>
+            <a href="#faq" onClick={(e) => handleSectionClick(e, 'faq')}>
+              Security
+            </a>
+          </div>
         </div>
       </Container>
     </footer>

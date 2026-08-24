@@ -5,7 +5,7 @@ import { HeroSection } from '../components/sections/HeroSection';
 import { HowItWorksSection } from '../components/sections/HowItWorksSection';
 import { FeaturesSection } from '../components/sections/FeaturesSection';
 import { ProductShowcaseSection } from '../components/sections/ProductShowcaseSection';
-import { RoiCalculatorSection } from '../components/sections/RoiCalculatorSection';
+// import { RoiCalculatorSection } from '../components/sections/RoiCalculatorSection';
 import { PricingSection } from '../components/sections/PricingSection';
 import { ContactSection } from '../components/sections/ContactSection';
 import { TestimonialsSection } from '../components/sections/TestimonialsSection';
@@ -26,7 +26,7 @@ export const LandingPage: React.FC = () => {
         <HowItWorksSection />
         <FeaturesSection />
         <ProductShowcaseSection />
-        <RoiCalculatorSection />
+        {/* <RoiCalculatorSection /> */}
         <PricingSection />
         <ContactSection />
         <TestimonialsSection />
