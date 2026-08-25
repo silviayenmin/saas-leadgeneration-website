@@ -34,7 +34,7 @@ export const TestimonialsSection: React.FC = () => {
       company: 'Independent Consulting',
       initials: 'PS',
       quote:
-        'The website email enrichment is super accurate. Instead of sending emails to generic info@ addresses, MapFlow gets direct emails and social links. The Groq AI email generator is fast like lightning!',
+        'The website email enrichment is super accurate. Instead of sending emails to generic info@ addresses, MapFlow gets direct emails and social links. The automated email pitch generator is fast like lightning!',
       rating: 5
     },
     {
@@ -44,7 +44,7 @@ export const TestimonialsSection: React.FC = () => {
       company: 'LocalRank Pro',
       initials: 'DM',
       quote:
-        'We saved thousands on Google Maps API fees. The built-in CRM board keeps our sales reps organized without needing external CRM tools.',
+        'We saved over 20 hours of manual prospecting every week. The built-in CRM board keeps our sales reps organized without needing external CRM tools.',
       rating: 5
     }
   ];

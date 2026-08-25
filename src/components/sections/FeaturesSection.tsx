@@ -71,7 +71,7 @@ export const FeaturesSection: React.FC = () => {
                   <div className="lead-stars">
                     <Star size={11} fill="#F59E0B" color="#F59E0B" />
                     <span>4.9</span>
-                    <span className="text-muted">(AI Match: 40%)</span>
+                    <span className="text-muted">(High Match)</span>
                   </div>
                 </div>
                 <span className="extractor-status">
@@ -144,7 +144,7 @@ export const FeaturesSection: React.FC = () => {
               <div className="ai-snippet-box">
                 <div className="ai-snippet-header">
                   <Sparkles size={12} color="#0EA5A4" />
-                  <span>Groq Llama-3.3 Pitch</span>
+                  <span>Personalized Pitch</span>
                 </div>
                 <div className="ai-snippet-text">
                   "Noticed Vortex Global's 4.9★ rating on Google Maps..."
@@ -281,7 +281,7 @@ export const FeaturesSection: React.FC = () => {
             <div className="bento-card-body">
               <h3 className="bento-title">Automated Lead Export &amp; CRM Sync</h3>
               <p className="bento-description">
-                Export enriched leads directly to CSV files, Google Sheets, Salesforce, HubSpot, or custom webhook APIs.
+                Export enriched leads directly to CSV files, Excel spreadsheets, or sync seamlessly into your existing CRM workflows.
               </p>
             </div>
 
@@ -290,7 +290,7 @@ export const FeaturesSection: React.FC = () => {
               <div className="export-pills-grid">
                 <span className="export-pill-chip"><FileSpreadsheet size={12} className="text-cyan" /> CSV Download</span>
                 <span className="export-pill-chip"><CheckCircle2 size={12} className="text-emerald" /> HubSpot Sync</span>
-                <span className="export-pill-chip"><Zap size={12} className="text-amber" /> Webhook API</span>
+                <span className="export-pill-chip"><Zap size={12} className="text-amber" /> Excel Sync</span>
               </div>
             </div>
           </GlassCard>

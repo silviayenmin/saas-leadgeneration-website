@@ -4,6 +4,10 @@ import {
   MapPin,
   Star,
   Sparkles,
+  Rocket,
+  Filter,
+  Activity,
+  Gauge,
   Kanban,
   CheckCircle2,
   Copy,
@@ -21,27 +25,36 @@ import {
   RotateCcw,
   ExternalLink,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Mail,
   Phone,
   Globe,
   Users,
   Linkedin,
   Send,
-  MessageSquare,
-  Compass
+  MessageSquare
 } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import './sections.css';
 
 type ShowcaseTab = 'discovery' | 'scans' | 'details' | 'crm';
-type DiscoveryStep = 1 | 2 | 3 | 4; // 1: Audience, 2: Filters, 3: Qualify/Launch, 4: Engaged Scraper
 
 export const ProductShowcaseSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ShowcaseTab>('discovery');
-  const [discoveryStep, setDiscoveryStep] = useState<DiscoveryStep>(1);
+  const [activeBoxStep, setActiveBoxStep] = useState<number>(1);
   const [copied, setCopied] = useState(false);
   const [pitchGenerated, setPitchGenerated] = useState(true);
+
+  // Circular Box Carousel Scroll Handlers
+  const handleNextBox = () => {
+    setActiveBoxStep((prev) => (prev % 4) + 1);
+  };
+
+  const handlePrevBox = () => {
+    setActiveBoxStep((prev) => ((prev - 2 + 4) % 4) + 1);
+  };
 
   const handleCopyPitch = () => {
     const pitchText = `Hi Vortex Team,\n\nNoticed Vortex Global Software has a stellar 4.9★ rating on Google Maps! While analyzing your site vortexsoftware.io, I noticed mobile load speeds take over 4 seconds, which might be leaking high-intent local clients to competitors.\n\nWe built an automated fix for this—would you be open to a 3-minute video breakdown?`;
@@ -49,6 +62,59 @@ export const ProductShowcaseSection: React.FC = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
+
+  // Dynamic AI Guide Content for Active Step Box
+  const getBoxGuideInfo = (step: number) => {
+    switch (step) {
+      case 1:
+        return {
+          badge: 'Box 1/4 • Find Customers',
+          speechTop: 'Input target location & keywords to search real-time business leads!',
+          speechSide: '👉 Box 1/4: Set target industry & city location to find verified leads.',
+          accentColor: '#0EA5E9',
+          themeClass: 'guide-theme-discovery',
+          stepIndex: 1
+        };
+      case 2:
+        return {
+          badge: 'Box 2/4 • Preferences',
+          speechTop: 'Adjust strictness filters, time range dials & maximum result limits!',
+          speechSide: '👉 Box 2/4: Fine-tune search dials, strictness slider & lead counter.',
+          accentColor: '#10B981',
+          themeClass: 'guide-theme-scans',
+          stepIndex: 2
+        };
+      case 3:
+        return {
+          badge: 'Box 3/4 • Review Summary',
+          speechTop: 'Review estimated customer yield & click Start Search to launch!',
+          speechSide: '👉 Box 3/4: View target summary (17–37 potential leads) & start scan.',
+          accentColor: '#8B5CF6',
+          themeClass: 'guide-theme-details',
+          stepIndex: 3
+        };
+      case 4:
+        return {
+          badge: 'Box 4/4 • Search & Results',
+          speechTop: 'Monitor live extraction progress & inspect real-time customer profiles!',
+          speechSide: '👉 Box 4/4: Watch live search progress & extracted email/phone leads.',
+          accentColor: '#F59E0B',
+          themeClass: 'guide-theme-crm',
+          stepIndex: 4
+        };
+      default:
+        return {
+          badge: 'Box 1/4 • Find Customers',
+          speechTop: 'Input target location & keywords to search real-time business leads!',
+          speechSide: '👉 Box 1/4: Set target industry & city location to find verified leads.',
+          accentColor: '#0EA5E9',
+          themeClass: 'guide-theme-discovery',
+          stepIndex: 1
+        };
+    }
+  };
+
+  const guideInfo = getBoxGuideInfo(activeBoxStep);
 
   return (
     <section id="product" className="section-wrapper product-showcase-wrapper">
@@ -141,279 +207,354 @@ export const ProductShowcaseSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Sub Header for Step Switcher when in Lead Discovery tab */}
-          {activeTab === 'discovery' && (
-            <div className="discovery-step-switcher-bar">
-              <span className="switcher-label">WIZARD STEPS:</span>
-              <button
-                className={`step-switch-btn ${discoveryStep === 1 ? 'active' : ''}`}
-                onClick={() => setDiscoveryStep(1)}
-              >
-                1. Define Audience
-              </button>
-              <button
-                className={`step-switch-btn ${discoveryStep === 2 ? 'active' : ''}`}
-                onClick={() => setDiscoveryStep(2)}
-              >
-                2. Configure Filters
-              </button>
-              <button
-                className={`step-switch-btn ${discoveryStep === 3 ? 'active' : ''}`}
-                onClick={() => setDiscoveryStep(3)}
-              >
-                3. Review &amp; Launch
-              </button>
-              <button
-                className={`step-switch-btn ${discoveryStep === 4 ? 'active' : ''}`}
-                onClick={() => setDiscoveryStep(4)}
-              >
-                4. Scraper Engaged
-              </button>
-            </div>
-          )}
-
           {/* Window Body Display based on Active Tab */}
           <div className="showcase-window-body">
-            {/* TAB 1: LEAD DISCOVERY */}
+            {/* TAB 1: LEAD DISCOVERY SCENARIO SHOWCASE (MATCHING USER SCREENSHOT 2) */}
             {activeTab === 'discovery' && (
-              <div className="tab-pane animate-fade-in discovery-saas-pane">
-                <div className="saas-pane-intro">
-                  <p className="intro-subtitle">
-                    Guided AI scraper targeting buying signals across LinkedIn, Facebook, Google Maps, and other directories.
-                  </p>
+              <div className="tab-pane animate-fade-in discovery-scenario-pane">
+                {/* 1. TOP CONNECTOR FLOW HEADER WITH CIRCULAR STEP FOCUS TRIGGERS */}
+                <div className="scenario-flow-header">
+                  <div
+                    className={`flow-step-node ${activeBoxStep === 1 ? 'active' : ''}`}
+                    onClick={() => setActiveBoxStep(1)}
+                    title="Click to Focus Box 1: Find Customers"
+                  >
+                    <div className="flow-step-icon"><Users size={15} /></div>
+                    <span className="flow-step-title">1. Find Customers</span>
+                  </div>
+                  <div className="flow-connector-pulse"><div className="pulse-line" /></div>
+
+                  <div
+                    className={`flow-step-node ${activeBoxStep === 2 ? 'active' : ''}`}
+                    onClick={() => setActiveBoxStep(2)}
+                    title="Click to Focus Box 2: Select Preferences"
+                  >
+                    <div className="flow-step-icon"><Filter size={15} /></div>
+                    <span className="flow-step-title">2. Select Preferences</span>
+                  </div>
+                  <div className="flow-connector-pulse"><div className="pulse-line" /></div>
+
+                  <div
+                    className={`flow-step-node ${activeBoxStep === 3 ? 'active' : ''}`}
+                    onClick={() => setActiveBoxStep(3)}
+                    title="Click to Focus Box 3: Review Summary"
+                  >
+                    <div className="flow-step-icon"><Rocket size={15} /></div>
+                    <span className="flow-step-title">3. Review Summary</span>
+                  </div>
+                  <div className="flow-connector-pulse"><div className="pulse-line" /></div>
+
+                  <div
+                    className={`flow-step-node ${activeBoxStep === 4 ? 'active' : ''}`}
+                    onClick={() => setActiveBoxStep(4)}
+                    title="Click to Focus Box 4: Active Search & Results"
+                  >
+                    <div className="flow-step-icon"><Activity size={15} /></div>
+                    <span className="flow-step-title">4. Active Search &amp; Results</span>
+                  </div>
                 </div>
 
-                {/* Stepper Progress Bar */}
-                <div className="saas-stepper-container">
-                  <div className={`stepper-node ${discoveryStep >= 1 ? 'active' : ''}`}>
-                    <div className="stepper-icon-circle">
-                      <User size={14} />
-                    </div>
-                    <span className="stepper-label">Audience</span>
-                  </div>
+                {/* 2. CIRCULAR BOXES CAROUSEL CONTAINER WITH LEFT & RIGHT ARROWS */}
+                <div className="boxes-circular-scroll-wrapper">
+                  {/* Left Circular Scroll Arrow */}
+                  <button
+                    className="box-scroll-nav-btn btn-prev"
+                    onClick={handlePrevBox}
+                    title="Scroll Boxes Left (Circular Loop)"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
 
-                  <div className={`stepper-line ${discoveryStep >= 2 ? 'filled' : ''}`} />
+                  {/* SCENARIO PANELS GRID */}
+                  <div className="scenario-grid-body">
+                    {/* COLUMN 1 (LEFT): DYNAMIC AI WORKFLOW PRESENTER WITH CIRCULAR SCROLL ORBIT */}
+                    <div className={`scenario-presenter-col ${guideInfo.themeClass}`}>
+                      <div className="presenter-character-card">
+                        {/* Guidance speech bubble pointing to tabs above */}
+                        <div className="guide-floating-speech top-pointer">
+                          <Sparkles size={12} className="text-cyan animate-pulse" />
+                          <span><strong>AI Guide:</strong> {guideInfo.speechTop}</span>
+                        </div>
 
-                  <div className={`stepper-node ${discoveryStep >= 2 ? 'active' : ''}`}>
-                    <div className="stepper-icon-circle">
-                      <Sliders size={14} />
-                    </div>
-                    <span className="stepper-label">Filters</span>
-                  </div>
+                        {/* CIRCULAR SCROLL ORBIT CONTAINER FOR PRESENTER IMAGE */}
+                        <div className="presenter-avatar-container">
+                          <div className="spinning-conic-ring" />
 
-                  <div className={`stepper-line ${discoveryStep >= 3 ? 'filled' : ''}`} />
+                          {/* 4 Orbit Node Pills flanking the image in a circle */}
+                          <button
+                            className={`orbit-node node-1 ${guideInfo.stepIndex === 1 ? 'active' : ''}`}
+                            onClick={() => setActiveBoxStep(1)}
+                            title="1. Find Customers"
+                          >1</button>
+                          <button
+                            className={`orbit-node node-2 ${guideInfo.stepIndex === 2 ? 'active' : ''}`}
+                            onClick={() => setActiveBoxStep(2)}
+                            title="2. Select Preferences"
+                          >2</button>
+                          <button
+                            className={`orbit-node node-3 ${guideInfo.stepIndex === 3 ? 'active' : ''}`}
+                            onClick={() => setActiveBoxStep(3)}
+                            title="3. Review Summary"
+                          >3</button>
+                          <button
+                            className={`orbit-node node-4 ${guideInfo.stepIndex === 4 ? 'active' : ''}`}
+                            onClick={() => setActiveBoxStep(4)}
+                            title="4. Active Search & Results"
+                          >4</button>
 
-                  <div className={`stepper-node ${discoveryStep >= 3 ? 'active' : ''}`}>
-                    <div className="stepper-icon-circle">
-                      <Sparkles size={14} />
-                    </div>
-                    <span className="stepper-label">Qualify</span>
-                  </div>
-                </div>
+                          <div className={`presenter-avatar-box circular-avatar-step-${guideInfo.stepIndex}`}>
+                            <div className="presenter-suit-graphic">
+                              <svg viewBox="0 0 180 260" className="presenter-svg" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                  <linearGradient id="suitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#1E293B" />
+                                    <stop offset="50%" stopColor="#0F172A" />
+                                    <stop offset="100%" stopColor="#020617" />
+                                  </linearGradient>
+                                  <linearGradient id="dynamicGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor={guideInfo.accentColor} stopOpacity="0.9" />
+                                    <stop offset="100%" stopColor={guideInfo.accentColor} stopOpacity="0.2" />
+                                  </linearGradient>
+                                  <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="6" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                  </filter>
+                                </defs>
 
-                {/* STEP 1: DEFINE TARGET AUDIENCE (MATCHING LATEST UI SCREENSHOT) */}
-                {discoveryStep === 1 && (
-                  <div className="saas-card-wizard saas-card-wizard--audience animate-fade-in">
-                    <div className="audience-split-layout">
-                      {/* LEFT COLUMN: FORM INPUTS */}
-                      <div className="audience-left-col">
-                        <div className="wizard-card-header">
-                          <div className="wizard-title-row">
-                            <div className="title-icon-badge">
-                              <Users size={16} color="#0EA5A4" />
+                                {/* Halo / Backdrop Radial Tech Ring with dynamic accent color */}
+                                <circle cx="90" cy="90" r="75" fill="none" stroke="url(#dynamicGlowGrad)" strokeWidth="2.5" strokeDasharray="6 4" className="radar-circle-pulse" />
+                                <circle cx="90" cy="90" r="62" fill={`${guideInfo.accentColor}0D`} stroke={`${guideInfo.accentColor}33`} strokeWidth="1" />
+
+                                {/* Modern Male Hair & Head */}
+                                <ellipse cx="90" cy="52" rx="30" ry="34" fill="#1E100A" />
+                                <circle cx="90" cy="58" r="25" fill="#F5C4A1" />
+                                
+                                {/* Stylish Modern Quiff Hair */}
+                                <path d="M 60 52 C 60 28, 120 28, 120 52 C 108 34, 72 34, 60 52 Z" fill="#2E1A10" />
+                                <path d="M 64 42 C 75 22, 115 26, 118 45 C 100 32, 76 34, 64 42 Z" fill="#3D2416" />
+
+                                {/* Tech Glass Headset / Earbud */}
+                                <rect x="112" y="52" width="6" height="12" rx="3" fill={guideInfo.accentColor} filter="url(#neonGlow)" />
+                                <path d="M 112 58 Q 100 68, 92 68" fill="none" stroke={guideInfo.accentColor} strokeWidth="2" strokeLinecap="round" />
+
+                                {/* Face Expression: Eyes & Warm Smile */}
+                                <circle cx="80" cy="56" r="3" fill="#0F172A" />
+                                <circle cx="100" cy="56" r="3" fill="#0F172A" />
+                                <circle cx="81" cy="55" r="1" fill="#FFFFFF" />
+                                <circle cx="101" cy="55" r="1" fill="#FFFFFF" />
+                                <path d="M 80 68 Q 90 77, 100 68" fill="none" stroke="#0F172A" strokeWidth="2.5" strokeLinecap="round" />
+
+                                {/* Neck & Shirt Collar */}
+                                <rect x="83" y="80" width="14" height="16" fill="#E2A682" />
+                                <path d="M 72 94 L 90 114 L 108 94 L 98 94 L 90 104 L 82 94 Z" fill="#FFFFFF" />
+                                <path d="M 88 102 L 92 102 L 91 145 L 89 145 Z" fill={guideInfo.accentColor} />
+
+                                {/* Tailored Modern Suit Body with Dynamic Neon Lapel Trim */}
+                                <path d="M 45 98 C 45 92, 135 92, 135 98 L 155 250 L 25 250 Z" fill="url(#suitGrad)" stroke="#334155" strokeWidth="2" />
+                                {/* Glowing Neon Lapel Trim Lines */}
+                                <path d="M 70 94 L 86 165 L 45 250" fill="none" stroke={guideInfo.accentColor} strokeWidth="2.5" />
+                                <path d="M 110 94 L 94 165 L 135 250" fill="none" stroke={guideInfo.accentColor} strokeWidth="2.5" />
+
+                                {/* Arms Gesturing towards the Right (Guiding Workflow) */}
+                                <path d="M 32 135 Q 15 165, 10 185 Q 25 190, 40 170 Z" fill="#E2A682" />
+                                <path d="M 142 135 Q 165 145, 175 130 Q 170 120, 148 125 Z" fill="#E2A682" />
+                                <circle cx="174" cy="128" r="5" fill="#E2A682" />
+                                <path d="M 174 128 L 180 125" stroke="#E2A682" strokeWidth="3" strokeLinecap="round" />
+                              </svg>
                             </div>
-                            <h3>Define Target Audience</h3>
-                          </div>
-                          <p className="wizard-desc">
-                            Specify the search keywords and industry context for our Llama-3.3 AI scanner.
-                          </p>
-                        </div>
-
-                        <div className="wizard-form-group">
-                          <label className="form-label">SEARCH INTENT QUERY / KEYWORD</label>
-                          <div className="form-input-box">
-                            <Compass size={16} className="input-icon text-cyan" />
-                            <input
-                              type="text"
-                              readOnly
-                              placeholder="e.g. logo designers, software companies, restaurants"
-                              className="form-input-text"
-                            />
-                          </div>
-                          <span className="form-footnote">
-                            Llama-3.3 will auto-expand this query to match varied social phrasing.
-                          </span>
-                        </div>
-
-                        <div className="wizard-form-group">
-                          <label className="form-label">TARGET LOCATION (OPTIONAL)</label>
-                          <div className="form-input-box">
-                            <MapPin size={16} className="input-icon text-cyan" />
-                            <input
-                              type="text"
-                              readOnly
-                              placeholder="e.g. United States, London"
-                              className="form-input-text"
-                            />
                           </div>
                         </div>
-                      </div>
 
-                      {/* RIGHT COLUMN: TARGET SCAN LOCATION PREVIEW MAP */}
-                      <div className="audience-right-col">
-                        <h4 className="preview-map-title">Target Scan Location Preview</h4>
-                        <div className="preview-map-container">
-                          {/* Satellite Map Vector / Graphic */}
-                          <div className="preview-map-graphic">
-                            {/* SVG Satellite Map Grid & Coastline */}
-                            <svg className="map-svg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              {/* Dark Map Base */}
-                              <rect width="400" height="240" rx="8" fill="#1b2838" />
-                              
-                              {/* Coastline & Bay Lines */}
-                              <path d="M 310 0 C 315 40, 312 80, 320 120 C 328 160, 345 200, 380 240 L 400 240 L 400 0 Z" fill="#141f2e" />
-                              <path d="M 310 0 C 315 40, 312 80, 320 120 C 328 160, 345 200, 380 240" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" strokeDasharray="3 3" />
-                              
-                              {/* Major Roads */}
-                              <path d="M 0 100 L 320 120" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-                              <path d="M 120 0 L 220 240" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-                              <path d="M 0 180 L 340 170" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-                              
-                              {/* Secondary Grid Lines */}
-                              <pattern id="mapGrid" width="30" height="30" patternUnits="userSpaceOnUse">
-                                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
-                              </pattern>
-                              <rect width="400" height="240" fill="url(#mapGrid)" />
+                        <div className="presenter-badge-label">
+                          <span className="live-dot" />
+                          <span>{guideInfo.badge}</span>
+                        </div>
 
-                              {/* Glowing Cyan Radar Scan Circle on Chennai */}
-                              <circle cx="310" cy="112" r="32" fill="rgba(14, 165, 164, 0.15)" stroke="#0EA5A4" strokeWidth="1.5" strokeDasharray="4 4" className="radar-circle-pulse" />
-                              <circle cx="310" cy="112" r="4" fill="#0EA5A4" />
-                            </svg>
-
-                            {/* Location City Labels matching screenshot */}
-                            <span className="map-city-tag tag-avadi" style={{ top: '38%', left: '8%' }}>Avadi</span>
-                            <span className="map-city-tag tag-ambattur" style={{ top: '38%', left: '26%' }}>Ambattur</span>
-                            <span className="map-city-tag tag-madhavaram" style={{ top: '18%', left: '55%' }}>Madhavaram</span>
-                            <span className="map-city-tag tag-tiruvottiyur" style={{ top: '10%', left: '78%' }}>Tiruvottiyur</span>
-                            <span className="map-city-tag tag-chennai-main" style={{ top: '44%', left: '72%' }}>Chennai</span>
-                            <span className="map-city-tag tag-maduravoyal" style={{ top: '56%', left: '26%' }}>Maduravoyal</span>
-                            <span className="map-city-tag tag-poonamallee" style={{ top: '64%', left: '5%' }}>Poonamallee</span>
-                            <span className="map-city-tag tag-valasaravakkam" style={{ top: '64%', left: '42%' }}>Valasaravakkam</span>
-                            <span className="map-city-tag tag-alandur" style={{ top: '80%', left: '48%' }}>Alandur</span>
-                            <span className="map-city-tag tag-shu88" style={{ top: '64%', left: '74%' }}>SHU88</span>
-                          </div>
+                        {/* Dynamic Speech Callout for active tab */}
+                        <div className="guide-floating-speech side-pointer">
+                          <span>{guideInfo.speechSide}</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* FULL WIDTH CONTINUE BUTTON */}
-                    <button className="saas-btn-continue saas-btn-continue--full" onClick={() => setDiscoveryStep(2)}>
-                      Continue
-                    </button>
+                    {/* COLUMN 2: 1. FIND CUSTOMERS */}
+                    <div
+                      className={`scenario-panel panel-find ${activeBoxStep === 1 ? 'active-box-focus' : ''}`}
+                      onClick={() => setActiveBoxStep(1)}
+                    >
+                      <div className="field-group">
+                        <label className="field-label">WHAT TO FIND</label>
+                        <div className="field-input-chip">
+                          <Search size={13} className="text-cyan" />
+                          <span>e.g., small businesses</span>
+                        </div>
+                      </div>
+
+                      <div className="field-group">
+                        <label className="field-label">WHERE TO LOOK</label>
+                        <div className="field-input-chip">
+                          <MapPin size={13} className="text-cyan" />
+                          <span>e.g., Chennai</span>
+                        </div>
+                      </div>
+
+                      {/* Speech Bubble Callout */}
+                      <div className="speech-callout-bubble bubble-left">
+                        <span>Focus on small business data.</span>
+                      </div>
+
+                      {/* Location Map Vector Preview */}
+                      <div className="scenario-map-card">
+                        <div className="map-tag-label">Location Map</div>
+                        <div className="map-mesh-visual">
+                          <svg viewBox="0 0 200 100" className="map-mesh-svg">
+                            <path d="M 0 50 Q 50 20, 100 50 T 200 50" fill="none" stroke="rgba(14, 165, 164, 0.4)" strokeWidth="1" />
+                            <path d="M 50 0 Q 100 80, 150 0" fill="none" stroke="rgba(14, 165, 164, 0.25)" strokeWidth="1" />
+                            <circle cx="100" cy="50" r="16" fill="rgba(14, 165, 164, 0.2)" stroke="#0EA5A4" strokeWidth="1.5" className="radar-circle-pulse" />
+                            <circle cx="100" cy="50" r="3" fill="#0EA5A4" />
+                          </svg>
+                          <span className="map-pin-pill">Chennai</span>
+                          <span className="map-sub-pill">SHUBB</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* COLUMN 3: 2. SELECT PREFERENCES */}
+                    <div
+                      className={`scenario-panel panel-preferences ${activeBoxStep === 2 ? 'active-box-focus' : ''}`}
+                      onClick={() => setActiveBoxStep(2)}
+                    >
+                      <div className="field-group">
+                        <label className="field-label">TIME RANGE</label>
+                        <div className="dials-row">
+                          <div className="gauge-dial-box">
+                            <Gauge size={20} className="text-cyan" />
+                          </div>
+                          <div className="gauge-dial-box">
+                            <Gauge size={20} className="text-cyan" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="field-group">
+                        <label className="field-label">STRICTNESS</label>
+                        <div className="slider-control-box">
+                          <div className="slider-track">
+                            <div className="slider-fill" style={{ width: '65%' }} />
+                            <div className="slider-handle" style={{ left: '65%' }} />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="field-group">
+                        <label className="field-label">MAX RESULTS</label>
+                        <div className="field-input-chip">
+                          <span className="text-muted">Value</span>
+                        </div>
+                      </div>
+
+                      <div className="field-group">
+                        <label className="field-label">COUNTER</label>
+                        <div className="field-input-chip select-chip">
+                          <span>CURRENT COUNT</span>
+                          <ChevronDown size={12} className="text-muted" />
+                        </div>
+                      </div>
+
+                      {/* Speech Bubble Callout */}
+                      <div className="speech-callout-bubble bubble-middle">
+                        <span>Focus on current result pool.</span>
+                      </div>
+                    </div>
+
+                    {/* COLUMN 4: 3. REVIEW SUMMARY */}
+                    <div
+                      className={`scenario-panel panel-summary ${activeBoxStep === 3 ? 'active-box-focus' : ''}`}
+                      onClick={() => setActiveBoxStep(3)}
+                    >
+                      <div className="summary-info-card">
+                        <div className="info-detail-row">
+                          <User size={13} className="text-muted" />
+                          <span>Customer Type: <strong>Small Business, Chennai</strong></span>
+                        </div>
+                        <div className="info-detail-row">
+                          <Globe size={13} className="text-muted" />
+                          <span>Platforms: <strong>Local Business Sites</strong></span>
+                        </div>
+                        <div className="info-detail-row">
+                          <Sliders size={13} className="text-muted" />
+                          <span>Result Limit: <strong>10 leads max</strong></span>
+                        </div>
+
+                        {/* Potential Customers Count */}
+                        <div className="estimate-customers-box">
+                          <div className="est-big-count text-gradient">17-37</div>
+                          <div className="est-count-label">Potential customers found.</div>
+                        </div>
+
+                        {/* Start Search CTA Button */}
+                        <button className="scenario-btn-start">
+                          <Rocket size={15} /> Start Search
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* COLUMN 5: 4. ACTIVE SEARCH & RESULTS */}
+                    <div
+                      className={`scenario-panel panel-results ${activeBoxStep === 4 ? 'active-box-focus' : ''}`}
+                      onClick={() => setActiveBoxStep(4)}
+                    >
+                      {/* Search Progress */}
+                      <div className="progress-section">
+                        <div className="progress-bar-container">
+                          <div className="progress-bar-fill animate-progress" style={{ width: '75%' }} />
+                        </div>
+                        <span className="progress-status-label">Search in progress...</span>
+                      </div>
+
+                      {/* Customer Profiles List */}
+                      <div className="customer-profiles-card">
+                        <div className="card-head-title">Customer Profiles</div>
+                        <div className="profile-mini-item">
+                          <div className="profile-avatar-circle">M</div>
+                          <div className="profile-mini-details">
+                            <span className="p-name">Apex Digital</span>
+                            <span className="p-stage text-cyan">Verified Email</span>
+                          </div>
+                        </div>
+                        <div className="profile-mini-item">
+                          <div className="profile-avatar-circle">V</div>
+                          <div className="profile-mini-details">
+                            <span className="p-name">Vortex Global</span>
+                            <span className="p-stage text-emerald">Phone Found</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Speech Bubble Callout */}
+                      <div className="speech-callout-bubble bubble-right">
+                        <span>New customers will appear here.</span>
+                      </div>
+                    </div>
                   </div>
-                )}
 
-                {/* STEP 2: CONFIGURE FILTERS & THRESHOLDS */}
-                {discoveryStep === 2 && (
-                  <div className="saas-card-wizard animate-fade-in">
-                    <button className="back-step-link" onClick={() => setDiscoveryStep(1)}>
-                      <ArrowLeft size={13} /> Back to Step 1
-                    </button>
+                  {/* Right Circular Scroll Arrow */}
+                  <button
+                    className="box-scroll-nav-btn btn-next"
+                    onClick={handleNextBox}
+                    title="Scroll Boxes Right (Circular Loop)"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
 
-                    <div className="wizard-card-header">
-                      <div className="wizard-title-row">
-                        <Sliders size={18} className="text-cyan" />
-                        <h3>Configure Filters &amp; Thresholds</h3>
-                      </div>
-                      <p className="wizard-desc">
-                        Tune recency limits, search strictness, and the maximum results to crawl.
-                      </p>
-                    </div>
-
-                    <div className="wizard-form-group">
-                      <label className="form-label">MAXIMUM RECORDS SCANNED</label>
-                      <div className="form-input-box select-box">
-                        <span className="select-val"># 10 Results (Quick)</span>
-                        <ChevronDown size={14} className="text-muted" />
-                      </div>
-                    </div>
-
-                    <button className="saas-btn-continue" onClick={() => setDiscoveryStep(3)}>
-                      Continue
-                    </button>
+                {/* BOTTOM RIGHT BRAND TAG */}
+                <div className="scenario-brand-footer">
+                  <div className="brand-pill-tag">
+                    <MapPin size={12} color="#0EA5A4" fill="#0EA5A4" />
+                    <span>MapFlow AI</span>
                   </div>
-                )}
-
-                {/* STEP 3: REVIEW & LAUNCH SCRAPER */}
-                {discoveryStep === 3 && (
-                  <div className="saas-card-wizard animate-fade-in">
-                    <button className="back-step-link" onClick={() => setDiscoveryStep(2)}>
-                      <ArrowLeft size={13} /> Back to Step 2
-                    </button>
-
-                    <div className="wizard-card-header">
-                      <div className="wizard-title-row">
-                        <Sparkles size={18} className="text-cyan" />
-                        <h3>Review &amp; Launch Scraper</h3>
-                      </div>
-                      <p className="wizard-desc">
-                        Verify the configuration summary below before deploying the automated search.
-                      </p>
-                    </div>
-
-                    <div className="summary-box-card">
-                      <div className="summary-row">
-                        <span className="summary-label"><User size={13} /> Target Audience</span>
-                        <span className="summary-val font-bold">Software Development Company in Austin</span>
-                      </div>
-                      <div className="summary-row">
-                        <span className="summary-label"><Database size={13} /> Platform Source</span>
-                        <span className="summary-val badge-teal-code">GOOGLE_MAPS</span>
-                      </div>
-                      <div className="summary-row">
-                        <span className="summary-label"><Sliders size={13} /> Recency / Limits</span>
-                        <span className="summary-val font-bold">10 leads max</span>
-                      </div>
-                    </div>
-
-                    <div className="targets-estimate-card">
-                      <div className="estimate-number">17 - 37</div>
-                      <div className="estimate-title">Estimated qualified lead targets</div>
-                      <div className="estimate-sub">
-                        Based on your filter metrics, matching history, and domain indexes.
-                      </div>
-                    </div>
-
-                    <button className="saas-btn-continue btn-launch" onClick={() => setDiscoveryStep(4)}>
-                      <Sparkles size={16} /> Launch AI scan
-                    </button>
-                  </div>
-                )}
-
-                {/* STEP 4: SCRAPER ENGAGED / LOADING STATE */}
-                {discoveryStep === 4 && (
-                  <div className="saas-loading-modal animate-fade-in">
-                    <div className="loading-card-box">
-                      <div className="loading-status-head">
-                        <span className="pulse-emerald-dot" />
-                        <span className="loading-title-text">MapFlow AI scraper engaged...</span>
-                      </div>
-                      <p className="loading-subtext">
-                        Extracting details and scoring lead quality...
-                      </p>
-
-                      <div className="progress-bar-container">
-                        <div className="progress-bar-fill animate-progress" style={{ width: '68%' }} />
-                      </div>
-                    </div>
-
-                    <div className="view-results-hint">
-                      <button className="hint-btn" onClick={() => setActiveTab('scans')}>
-                        View Extracted Results in Scans &amp; History →
-                      </button>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             )}
 
