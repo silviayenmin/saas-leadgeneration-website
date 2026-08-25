@@ -72,7 +72,7 @@ export const HeroDashboardPreview: React.FC = () => {
                   value="Software Development Company in Austin"
                   className="search-input"
                 />
-                <span className="search-badge">Llama-3.3 Auto-Expand</span>
+                <span className="search-badge">Smart Location Filter</span>
               </div>
               <div className="leads-found-badge">
                 <TrendingUp size={14} />

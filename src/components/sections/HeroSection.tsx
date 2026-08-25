@@ -21,20 +21,20 @@ export const HeroSection: React.FC = () => {
             {/* AI Engine Badge */}
             <div className="hero-badge-wrapper">
               <Badge variant="primary" icon={<Zap size={14} className="text-cyan" />}>
-                Powered by Groq Llama-3.3 AI Engine
+                Smart B2B Lead Discovery &amp; Client Engine
               </Badge>
             </div>
 
             {/* Main Headline */}
             <h1 className="hero-headline">
-              <span className="hero-line">Scrape Google Maps. </span>
-              <span className="hero-line text-gradient">Enrich Leads with AI. </span>
-              <span className="hero-line">Close 5x More B2B Clients.</span>
+              <span className="hero-line">Find Local Businesses. </span>
+              <span className="hero-line text-gradient">Get Verified Contacts. </span>
+              <span className="hero-line">Close 5x More Clients.</span>
             </h1>
 
             {/* Subheadline */}
             <p className="hero-subheadline">
-              MapFlow AI automatically finds local businesses on Google Maps, discovers direct owner emails &amp; social handles from their websites, writes tailored cold pitches in 1-click, and manages your entire sales pipeline.
+              MapFlow AI automatically discovers targeted local businesses, extracts verified direct owner emails &amp; phone numbers, generates personalized outreach pitches, and organizes your entire client pipeline.
             </p>
 
             {/* CTAs */}
@@ -64,15 +64,15 @@ export const HeroSection: React.FC = () => {
             <div className="hero-trust-indicators">
               <div className="trust-item">
                 <CheckCircle2 size={16} className="trust-icon" />
-                <span>25 Free Lead Credits</span>
+                <span>25 Free Verified Credits</span>
               </div>
               <div className="trust-item">
                 <CheckCircle2 size={16} className="trust-icon" />
-                <span>No Google Maps API Key Needed</span>
+                <span>Zero Technical Setup Required</span>
               </div>
               <div className="trust-item">
                 <CheckCircle2 size={16} className="trust-icon" />
-                <span>Setup in Under 60 Seconds</span>
+                <span>Ready in Under 60 Seconds</span>
               </div>
             </div>
           </div>
