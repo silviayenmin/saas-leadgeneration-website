@@ -9370,35 +9370,28 @@
   box-sizing: border-box;
 }
 
-.showcase-content-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  transform: scale(0.92); /* Scale down slightly by default to ensure perfect fit */
+.showcase-sticky-viewport .showcase-window {
+  transform: scale(1); /* No scale compression by default, keep it spacious and full-size! */
   transform-origin: center center;
   transition: transform 0.3s ease;
 }
 
 /* Height-based media queries to dynamically scale content and guarantee it fits viewports */
-@media (max-height: 860px) {
-  .showcase-content-container {
-    transform: scale(0.84);
+@media (max-height: 800px) {
+  .showcase-sticky-viewport .showcase-window {
+    transform: scale(0.92); /* Minor scale down on shorter viewport heights */
   }
 }
 
-@media (max-height: 760px) {
-  .showcase-content-container {
-    transform: scale(0.76);
+@media (max-height: 700px) {
+  .showcase-sticky-viewport .showcase-window {
+    transform: scale(0.85); /* Slightly smaller on very short heights to fit */
   }
 }
 
-@media (max-height: 680px) {
-  .showcase-content-container {
-    transform: scale(0.68);
+@media (max-height: 600px) {
+  .showcase-sticky-viewport .showcase-window {
+    transform: scale(0.78); /* Fallback scale for tiny viewports */
   }
 }
 
@@ -9606,10 +9599,8 @@
     display: block !important;
     z-index: 1 !important;
   }
-  .showcase-content-container {
+  .showcase-sticky-viewport .showcase-window {
     transform: none !important;
-    height: auto !important;
-    display: block !important;
   }
   .visual-step-card {
     position: relative !important;

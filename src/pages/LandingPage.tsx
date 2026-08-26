@@ -4,7 +4,6 @@ import 'aos/dist/aos.css';
 import { SEO } from '../components/common/SEO';
 import { Navbar } from '../components/layout/Navbar';
 import { HeroSection } from '../components/sections/HeroSection';
-import { HowItWorksSection } from '../components/sections/HowItWorksSection';
 import { FeaturesSection } from '../components/sections/FeaturesSection';
 import { ProductShowcaseSection } from '../components/sections/ProductShowcaseSection';
 import { PricingSection } from '../components/sections/PricingSection';
@@ -37,7 +36,6 @@ export const LandingPage: React.FC = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <HowItWorksSection />
         <FeaturesSection />
         <ProductShowcaseSection />
         <PricingSection />
