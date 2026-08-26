@@ -11,7 +11,7 @@ import './layout.css';
 
 const NAV_ITEMS: NavItem[] = [
   { label: 'Product', href: '#product' },
-  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Features', href: '#features' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Contact', href: '#contact' },
   { label: 'FAQ', href: '#faq' },

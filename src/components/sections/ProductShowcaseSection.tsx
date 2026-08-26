@@ -146,60 +146,9 @@ export const ProductShowcaseSection: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  // Dynamic AI Guide Content for Active Step Box
-  const getBoxGuideInfo = (step: number) => {
-    switch (step) {
-      case 1:
-        return {
-          badge: 'Box 1/4 • Find Customers',
-          speechTop: 'Input target location & keywords to search real-time business leads!',
-          speechSide: '👉 Box 1/4: Set target industry & city location to find verified leads.',
-          accentColor: '#0EA5E9',
-          themeClass: 'guide-theme-discovery',
-          stepIndex: 1
-        };
-      case 2:
-        return {
-          badge: 'Box 2/4 • Preferences',
-          speechTop: 'Adjust strictness filters, time range dials & maximum result limits!',
-          speechSide: '👉 Box 2/4: Fine-tune search dials, strictness slider & lead counter.',
-          accentColor: '#10B981',
-          themeClass: 'guide-theme-scans',
-          stepIndex: 2
-        };
-      case 3:
-        return {
-          badge: 'Box 3/4 • Review Summary',
-          speechTop: 'Review estimated customer yield & click Start Search to launch!',
-          speechSide: '👉 Box 3/4: View target summary (17–37 potential leads) & start scan.',
-          accentColor: '#8B5CF6',
-          themeClass: 'guide-theme-details',
-          stepIndex: 3
-        };
-      case 4:
-        return {
-          badge: 'Box 4/4 • Search & Results',
-          speechTop: 'Monitor live extraction progress & inspect real-time customer profiles!',
-          speechSide: '👉 Box 4/4: Watch live search progress & extracted email/phone leads.',
-          accentColor: '#F59E0B',
-          themeClass: 'guide-theme-crm',
-          stepIndex: 4
-        };
-      default:
-        return {
-          badge: 'Box 1/4 • Find Customers',
-          speechTop: 'Input target location & keywords to search real-time business leads!',
-          speechSide: '👉 Box 1/4: Set target industry & city location to find verified leads.',
-          accentColor: '#0EA5E9',
-          themeClass: 'guide-theme-discovery',
-          stepIndex: 1
-        };
-    }
-  };
 
-  const guideInfo = getBoxGuideInfo(activeBoxStep);
 
-  const t = scrollProgress < 0.12 ? 1 : scrollProgress >= 0.30 ? 0 : 1 - (scrollProgress - 0.12) / 0.18;
+
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   useEffect(() => {
@@ -213,21 +162,24 @@ export const ProductShowcaseSection: React.FC = () => {
 
   // Scroll-Based Storytelling Layout
   return (
-    <div className="showcase-scroll-track" ref={trackRef}>
-      <div className="showcase-sticky-viewport">
-        <section id="product" className="section-wrapper product-showcase-wrapper" style={{ overflow: 'visible' }}>
-          {/* Background Glow */}
-          <div className="showcase-bg-glow" />
+    <section id="product" className="section-wrapper product-showcase-wrapper" style={{ overflow: 'visible' }}>
+      {/* Background Glow */}
+      <div className="showcase-bg-glow" />
 
-          <Container size="lg" className="showcase-content-container">
-            {/* Section Heading — Inside the sticky viewport so it stays visible */}
-            <SectionHeading
-              badge="AUTHENTIC PRODUCT INTERFACE"
-              title="Experience MapFlow AI in Action"
-              subtitle="Explore our live SaaS tool—from 3-step lead discovery to maps scan history, lead profile details, and CRM pipeline."
-              align="center"
-            />
+      <Container size="lg">
+        {/* Section Heading — Outside the scroll track so it scrolls naturally */}
+        <SectionHeading
+          badge="AUTHENTIC PRODUCT INTERFACE"
+          title="Experience MapFlow AI in Action"
+          subtitle="Explore our live SaaS tool—from 3-step lead discovery to maps scan history, lead profile details, and CRM pipeline."
+          align="center"
+        />
+      </Container>
 
+      {/* Scroll track contains only the sticky window shell */}
+      <div className="showcase-scroll-track" ref={trackRef}>
+        <div className="showcase-sticky-viewport">
+          <Container size="lg">
             {/* Product Dashboard Window Shell */}
             <div className="showcase-window">
                 {/* Window Bar */}
@@ -337,7 +289,7 @@ export const ProductShowcaseSection: React.FC = () => {
                         </div>
 
                         <div className="narrator-avatar-wrapper" style={{
-                          transform: `translate3d(0, ${robotTranslateY}px, 0) scale(${1 + t * 0.12})`,
+                          transform: `translate3d(0, ${robotTranslateY}px, 0) scale(1.12)`,
                           transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)'
                         }}>
                           <div className="avatar-pulse-ring" />
@@ -352,17 +304,6 @@ export const ProductShowcaseSection: React.FC = () => {
                                 objectFit: 'contain'
                               }}
                             />
-                          </div>
-                          <div className="presenter-badge-label" style={{ 
-                            border: `1px solid ${guideInfo.accentColor}`, 
-                            color: guideInfo.accentColor, 
-                            background: `${guideInfo.accentColor}1A`,
-                            opacity: scrollProgress < 0.15 ? 0 : 1,
-                            transform: `scale(${scrollProgress < 0.15 ? 0.8 : 1})`,
-                            transition: 'all 0.4s ease'
-                          }}>
-                            <span className="live-dot" style={{ background: guideInfo.accentColor }} />
-                            <span>{scrollProgress < 0.15 ? 'MapFlow AI Guide' : guideInfo.badge}</span>
                           </div>
                         </div>
                       </div>
@@ -586,8 +527,8 @@ export const ProductShowcaseSection: React.FC = () => {
                 </div>
               </div>
             </Container>
-          </section>
+          </div>
         </div>
-      </div>
+      </section>
     );
 };

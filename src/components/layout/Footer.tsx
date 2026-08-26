@@ -101,8 +101,8 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" onClick={(e) => handleSectionClick(e, 'how-it-works')}>
-                  How It Works
+                <a href="#features" onClick={(e) => handleSectionClick(e, 'features')}>
+                  Core Features
                 </a>
               </li>
               <li>
