@@ -33,7 +33,7 @@ export const FeaturesSection: React.FC = () => {
         <SectionHeading
           badge="COMPLETE LEAD ENGINE"
           title="Everything You Need to Turn Local Businesses Into Clients"
-          subtitle="MapFlow AI combines lead discovery, enrichment, AI outreach, and CRM into one streamlined workflow."
+          subtitle="LeadGen AI combines lead discovery, enrichment, AI outreach, and CRM into one streamlined workflow."
           align="center"
         />
 
@@ -247,7 +247,7 @@ export const FeaturesSection: React.FC = () => {
             <div className="bento-card-body">
               <h3 className="bento-title">Credit Economics</h3>
               <p className="bento-description">
-                Track credit usage transparently and understand exactly how your MapFlow usage is consumed.
+                Track credit usage transparently and understand exactly how your LeadGen usage is consumed.
               </p>
             </div>
 

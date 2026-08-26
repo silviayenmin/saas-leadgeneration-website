@@ -14,8 +14,8 @@ export const LoginPage: React.FC = () => {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg-main)' }}>
       <SEO
-        title="Login — MapFlow AI"
-        description="Sign in to your MapFlow AI workspace."
+        title="Login — LeadGen AI"
+        description="Sign in to your LeadGen AI workspace."
       />
       <Navbar />
       <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 60px' }}>
@@ -23,7 +23,7 @@ export const LoginPage: React.FC = () => {
           <div style={{ textAlign: 'center', marginBottom: '28px' }}>
             <h1 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '8px' }}>Welcome Back</h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-              Sign in to manage your MapFlow AI lead pipeline
+              Sign in to manage your LeadGen AI lead pipeline
             </p>
           </div>
 

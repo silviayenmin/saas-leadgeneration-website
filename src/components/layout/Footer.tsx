@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
                 <MapPin size={22} color="#FFFFFF" />
               </div>
               <span className="footer-brand-name">
-                MapFlow<span className="text-cyan"> AI</span>
+                LeadGen<span className="text-cyan"> AI</span>
               </span>
             </Link>
             <p className="footer-brand-desc">
@@ -199,7 +199,7 @@ export const Footer: React.FC = () => {
         {/* Footer Bottom Legal Bar */}
         <div className="footer-bottom-bar">
           <p className="footer-copyright">
-            © {new Date().getFullYear()} MapFlow AI. All rights reserved.
+            © {new Date().getFullYear()} LeadGen AI. All rights reserved.
           </p>
           <div className="footer-legal-links">
             <a href="#faq" onClick={(e) => handleSectionClick(e, 'faq')}>

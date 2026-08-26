@@ -24,7 +24,7 @@ export const TestimonialsSection: React.FC = () => {
       company: 'Vance Media Agency',
       initials: 'MV',
       quote:
-        'MapFlow AI replaced two expensive tools for us. We scraped 400 local HVAC leads in Dallas and generated personalized AI emails in 15 minutes. Closed 3 new monthly retainer clients ($4,500/mo) in our first week!',
+        'LeadGen AI replaced two expensive tools for us. We scraped 400 local HVAC leads in Dallas and generated personalized AI emails in 15 minutes. Closed 3 new monthly retainer clients ($4,500/mo) in our first week!',
       rating: 5
     },
     {
@@ -34,7 +34,7 @@ export const TestimonialsSection: React.FC = () => {
       company: 'Independent Consulting',
       initials: 'PS',
       quote:
-        'The website email enrichment is super accurate. Instead of sending emails to generic info@ addresses, MapFlow gets direct emails and social links. The automated email pitch generator is fast like lightning!',
+        'The website email enrichment is super accurate. Instead of sending emails to generic info@ addresses, LeadGen gets direct emails and social links. The automated email pitch generator is fast like lightning!',
       rating: 5
     },
     {
@@ -59,7 +59,7 @@ export const TestimonialsSection: React.FC = () => {
         <SectionHeading
           badge="CUSTOMER SUCCESS STORIES"
           title="Built for Teams That Need More Qualified Leads"
-          subtitle="See how agency founders, consultants, and lead gen teams scale outbound revenue with MapFlow AI."
+          subtitle="See how agency founders, consultants, and lead gen teams scale outbound revenue with LeadGen AI."
           align="center"
         />
 

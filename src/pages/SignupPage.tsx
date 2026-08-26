@@ -14,8 +14,8 @@ export const SignupPage: React.FC = () => {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg-main)' }}>
       <SEO
-        title="Sign Up Free — MapFlow AI"
-        description="Create your free MapFlow AI account and get 25 lead credits."
+        title="Sign Up Free — LeadGen AI"
+        description="Create your free LeadGen AI account and get 25 lead credits."
       />
       <Navbar />
       <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 60px' }}>

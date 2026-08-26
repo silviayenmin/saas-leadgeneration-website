@@ -61,7 +61,7 @@ const sendViaSmtp = async (
           SecureToken: SMTP_CONFIG.secureToken.trim(),
           To: ADMIN_EMAIL,
           From: SMTP_CONFIG.from || ADMIN_EMAIL,
-          Subject: `⚡ MapFlow AI Inquiry: ${formData.subject} - ${formData.fullName}`,
+          Subject: `⚡ LeadGen AI Inquiry: ${formData.subject} - ${formData.fullName}`,
           Body: htmlTemplate
         }
       : {
@@ -70,7 +70,7 @@ const sendViaSmtp = async (
           Password: SMTP_CONFIG.password.trim(),
           To: ADMIN_EMAIL,
           From: SMTP_CONFIG.from || SMTP_CONFIG.username.trim(),
-          Subject: `⚡ MapFlow AI Inquiry: ${formData.subject} - ${formData.fullName}`,
+          Subject: `⚡ LeadGen AI Inquiry: ${formData.subject} - ${formData.fullName}`,
           Body: htmlTemplate
         };
 
@@ -83,7 +83,7 @@ const sendViaSmtp = async (
 };
 
 /**
- * Submits the MapFlow AI contact form details to the admin email (madhusudhanan.yenmin@gmail.com)
+ * Submits the LeadGen AI contact form details to the admin email (madhusudhanan.yenmin@gmail.com)
  * with direct SMTP, Web3Forms, or FormSubmit fallback support.
  */
 export const submitContactForm = async (
@@ -93,7 +93,7 @@ export const submitContactForm = async (
 
   // FormSubmit payload (standard clean field names)
   const formSubmitPayload = {
-    _subject: `⚡ MapFlow AI Inquiry: ${formData.subject} - ${formData.fullName}`,
+    _subject: `⚡ LeadGen AI Inquiry: ${formData.subject} - ${formData.fullName}`,
     _replyto: formData.email,
     _autorespond: htmlTemplate,
     _html: htmlTemplate,
@@ -160,8 +160,8 @@ export const submitContactForm = async (
           },
           body: JSON.stringify({
             access_key: WEB3FORMS_ACCESS_KEY.trim(),
-            subject: `⚡ MapFlow AI Inquiry: ${formData.subject} - ${formData.fullName}`,
-            from_name: 'MapFlow AI Lead Engine',
+            subject: `⚡ LeadGen AI Inquiry: ${formData.subject} - ${formData.fullName}`,
+            from_name: 'LeadGen AI Lead Engine',
             replyto: formData.email,
             name: formData.fullName,
             email: formData.email,

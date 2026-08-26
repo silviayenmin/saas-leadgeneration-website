@@ -170,7 +170,7 @@ export const ProductShowcaseSection: React.FC = () => {
         {/* Section Heading — Outside the scroll track so it scrolls naturally */}
         <SectionHeading
           badge="AUTHENTIC PRODUCT INTERFACE"
-          title="Experience MapFlow AI in Action"
+          title="Experience LeadGen AI in Action"
           subtitle="Explore our live SaaS tool—from 3-step lead discovery to maps scan history, lead profile details, and CRM pipeline."
           align="center"
         />
@@ -193,7 +193,7 @@ export const ProductShowcaseSection: React.FC = () => {
                   <div className="window-title">
                     <div className="saas-logo-brand">
                       <Sparkles size={14} className="text-cyan" />
-                      <span className="saas-logo-text">MAPFLOW AI</span>
+                      <span className="saas-logo-text">LEADGEN AI</span>
                     </div>
                     <span className="window-divider">|</span>
                     <span className="saas-page-title">
@@ -270,7 +270,7 @@ export const ProductShowcaseSection: React.FC = () => {
                             <Sparkles size={14} className="text-cyan animate-pulse bubble-sparkle" />
                             <div className="bubble-text-wrapper">
                               <div className={`bubble-text-slide ${scrollProgress < 0.08 ? 'active' : ''}`}>
-                                <strong>AI Guide:</strong> Hi! I'm your MapFlow AI guide. Let's explore how it works! Scroll down to start! 🚀
+                                <strong>AI Guide:</strong> Hi! I'm your LeadGen AI guide. Let's explore how it works! Scroll down to start! 🚀
                               </div>
                               <div className={`bubble-text-slide ${(scrollProgress >= 0.08 && activeBoxStep === 1) ? 'active' : ''}`}>
                                 <strong>AI Guide:</strong> Describe who you want to find and where in plain English—no complex setups required!
@@ -296,7 +296,7 @@ export const ProductShowcaseSection: React.FC = () => {
                           <div className="avatar-svg-container">
                             <img 
                               src={robotImg} 
-                              alt="MapFlow AI Guide Robot" 
+                              alt="LeadGen AI Guide Robot" 
                               className="presenter-svg presenter-png"
                               style={{
                                 width: '230px',
@@ -330,11 +330,20 @@ export const ProductShowcaseSection: React.FC = () => {
                                 <span className="window-indicator">Search Query Setup</span>
                               </div>
                               
-                              <div className="mock-search-box">
-                                <Search size={16} className="text-cyan search-pulse-icon" />
-                                <div className="typing-container">
-                                  <span className="typing-text">Digital Agencies in Chennai</span>
-                                  <span className="cursor-blink">|</span>
+                              <div className="mock-search-box-row">
+                                <div className="mock-search-box mock-search-box--keyword">
+                                  <Search size={16} className="text-cyan search-pulse-icon" />
+                                  <div className="typing-container">
+                                    <span className="typing-text">Digital Agencies</span>
+                                    <span className="cursor-blink">|</span>
+                                  </div>
+                                </div>
+                                
+                                <div className="mock-search-box mock-search-box--location">
+                                  <MapPin size={16} className="text-cyan" />
+                                  <div className="typing-container">
+                                    <span className="typing-text">Chennai</span>
+                                  </div>
                                 </div>
                               </div>
 

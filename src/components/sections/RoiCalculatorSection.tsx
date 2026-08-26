@@ -214,11 +214,11 @@ export const RoiCalculatorSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Recommended MapFlow Plan Pill */}
+              {/* Recommended LeadGen Plan Pill */}
               <div className="recommended-plan-box">
                 <div className="plan-box-head">
                   <Sparkles size={16} className="text-cyan" />
-                  <span>RECOMMENDED MAPFLOW PLAN</span>
+                  <span>RECOMMENDED LEADGEN PLAN</span>
                 </div>
                 <div className="plan-box-details">
                   <div className="plan-name-wrap">

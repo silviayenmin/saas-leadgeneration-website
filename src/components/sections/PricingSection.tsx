@@ -55,7 +55,7 @@ export const PricingSection: React.FC = () => {
       icon: <Zap size={22} color="#0EA5A4" />,
       label: 'For Getting Started',
       creditsBadge: '25 Lead Credits / month',
-      description: 'Ideal for trying out MapFlow lead extraction on your first target city.',
+      description: 'Ideal for trying out LeadGen lead extraction on your first target city.',
       features: [
         '25 Lead Credits / month',
         'Basic Maps Lead Search',

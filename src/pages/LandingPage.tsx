@@ -30,7 +30,7 @@ export const LandingPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="MapFlow AI — Automated Google Maps Lead Discovery & AI Cold Outreach"
+        title="LeadGen AI — Automated Google Maps Lead Discovery & AI Cold Outreach"
         description="Turn Google Maps data into qualified B2B leads. Enrich website contact info, automate AI cold email outreach, and manage your pipeline with Kanban CRM."
       />
       <Navbar />

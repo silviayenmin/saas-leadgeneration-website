@@ -188,13 +188,13 @@ export const ContactSection: React.FC = () => {
         <SectionHeading
           badge="GET IN TOUCH"
           title="Let's Talk About Your Lead Generation"
-          subtitle="Have questions about MapFlow AI, need help choosing a plan, or want to discuss how it can fit your sales workflow? Send us a message."
+          subtitle="Have questions about LeadGen AI, need help choosing a plan, or want to discuss how it can fit your sales workflow? Send us a message."
           align="center"
         />
 
         {/* Two-Column Grid */}
         <div className="contact-grid">
-          {/* LEFT SIDE: Information Panel & MapFlow Visuals */}
+          {/* LEFT SIDE: Information Panel & LeadGen Visuals */}
           <div className="contact-info-panel reveal-fade-left">
             <div className="info-panel-head">
               <span className="info-badge">
@@ -203,7 +203,7 @@ export const ContactSection: React.FC = () => {
               </span>
               <h3 className="info-title">Let's Build Your Lead Engine</h3>
               <p className="info-description">
-                Whether you're an agency, freelancer, sales team, or SaaS business, we're here to help you get more value from MapFlow AI.
+                Whether you're an agency, freelancer, sales team, or SaaS business, we're here to help you get more value from LeadGen AI.
               </p>
             </div>
 
@@ -216,7 +216,7 @@ export const ContactSection: React.FC = () => {
                 <div className="benefit-content">
                   <h4 className="benefit-title">Product Questions</h4>
                   <p className="benefit-text">
-                    Get help understanding MapFlow AI features and workflows.
+                    Get help understanding LeadGen AI features and workflows.
                   </p>
                 </div>
               </div>
@@ -246,7 +246,7 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Decorative MapFlow UI Radar Grid & Live Pin Element */}
+            {/* Decorative LeadGen UI Radar Grid & Live Pin Element */}
             <div className="contact-visual-card">
               <div className="contact-radar-grid">
                 <div className="radar-node node-1">

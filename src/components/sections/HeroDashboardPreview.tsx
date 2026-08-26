@@ -34,7 +34,7 @@ export const HeroDashboardPreview: React.FC = () => {
           </div>
           <div className="window-title">
             <MapPin size={12} className="text-primary" />
-            <span>MapFlow AI — Lead Discovery Engine</span>
+            <span>LeadGen AI — Lead Discovery Engine</span>
           </div>
           <div className="window-status">
             <Zap size={11} className="text-cyan" style={{ marginRight: 4 }} />
