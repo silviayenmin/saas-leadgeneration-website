@@ -8548,7 +8548,6 @@
   width: 100%;
   align-items: stretch;
   margin-top: 10px;
-  transition: gap 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (max-width: 820px) {
@@ -8558,6 +8557,7 @@
   }
   .showcase-narrator-column {
     width: 100% !important;
+    margin-left: 0 !important;
   }
 }
 
@@ -8570,12 +8570,13 @@
   align-items: center;
   gap: 12px;
   position: relative;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: margin-left 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-left: 0;
 }
 
-.showcase-split-container.centered-state {
-  justify-content: center;
-  gap: 0 !important;
+.showcase-narrator-column.centered-state {
+  margin-left: calc(50% - 150px);
 }
 
 .showcase-visual-column.column-hidden {
@@ -8670,7 +8671,7 @@
   gap: 16px;
   justify-content: space-between;
   opacity: 1;
-  max-width: 650px;
+  /* max-width: 650px; */
   transition: flex 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
               max-width 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
               opacity 0.6s ease,
@@ -8689,6 +8690,8 @@
   backdrop-filter: blur(8px);
   position: relative;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 12px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .visual-step-card {
@@ -9340,7 +9343,7 @@
 
 /* Scroll-Driven Animation & Reveal Storyboard Styles */
 .showcase-scroll-track {
-  height: 220vh; /* Reduced track height to make scrolling tighter and eliminate extra space */
+  height: 190vh; /* Reduced track height to make scrolling tighter and eliminate extra space */
   position: relative;
   width: 100%;
   overflow: visible !important; /* Force overflow visible to allow sticky viewport sticking! */
@@ -9367,13 +9370,14 @@
   box-sizing: border-box;
 }
 
-.showcase-sticky-viewport .product-showcase-wrapper {
+.showcase-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: auto;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: transparent;
+  height: 100%;
+  box-sizing: border-box;
   transform: scale(0.92); /* Scale down slightly by default to ensure perfect fit */
   transform-origin: center center;
   transition: transform 0.3s ease;
@@ -9381,20 +9385,20 @@
 
 /* Height-based media queries to dynamically scale content and guarantee it fits viewports */
 @media (max-height: 860px) {
-  .showcase-sticky-viewport .product-showcase-wrapper {
-    transform: scale(0.85);
+  .showcase-content-container {
+    transform: scale(0.84);
   }
 }
 
 @media (max-height: 760px) {
-  .showcase-sticky-viewport .product-showcase-wrapper {
-    transform: scale(0.78);
+  .showcase-content-container {
+    transform: scale(0.76);
   }
 }
 
 @media (max-height: 680px) {
-  .showcase-sticky-viewport .product-showcase-wrapper {
-    transform: scale(0.7);
+  .showcase-content-container {
+    transform: scale(0.68);
   }
 }
 
@@ -9532,7 +9536,7 @@
 .visual-cards-stack {
   position: relative;
   width: 100%;
-  height: 100%;
+  flex-grow: 1;
   min-height: 290px;
 }
 
@@ -9548,6 +9552,11 @@
   background: transparent;
   filter: blur(5px);
   transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.visual-step-card > * {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .showcase-step-card-active {
@@ -9597,9 +9606,10 @@
     display: block !important;
     z-index: 1 !important;
   }
-  .showcase-sticky-viewport .product-showcase-wrapper {
-    padding: 80px 0 !important;
+  .showcase-content-container {
     transform: none !important;
+    height: auto !important;
+    display: block !important;
   }
   .visual-step-card {
     position: relative !important;
