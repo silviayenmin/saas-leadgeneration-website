@@ -180,7 +180,6 @@ export const ProductShowcaseSection: React.FC = () => {
   }, []);
 
   const robotTranslateY = windowWidth < 820 ? (scrollProgress < 0.08 ? 30 : 0) : 0;
-  const revealProgress = scrollProgress < 0.08 ? 0 : scrollProgress >= 0.25 ? 1 : (scrollProgress - 0.08) / 0.17;
 
   // Scroll-Based Storytelling Layout
   return (
@@ -340,16 +339,7 @@ export const ProductShowcaseSection: React.FC = () => {
 
                       {/* Right Column: Visual Column */}
                       <div className={`showcase-visual-column ${scrollProgress < 0.08 ? 'column-hidden' : ''}`}>
-                        <div 
-                          className="visual-card-wrapper"
-                          style={{
-                            clipPath: `ellipse(calc(${revealProgress * 125}% + 10%) calc(${revealProgress * 135}% + 10%) at 25% 15%)`,
-                            opacity: revealProgress,
-                            visibility: scrollProgress < 0.08 ? 'hidden' : 'visible',
-                            transform: `scale(${0.96 + revealProgress * 0.04}) translate3d(0, ${(1 - revealProgress) * 20}px, 0)`,
-                            transition: 'clip-path 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s'
-                          }}
-                        >
+                        <div className={`visual-card-wrapper ${scrollProgress >= 0.08 ? 'visible' : ''}`}>
                           <div className="visual-cards-stack" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px' }}>
                             {/* Step 1 Visual: Define Target */}
                             <div className={`visual-step-card card-step-1 ${
