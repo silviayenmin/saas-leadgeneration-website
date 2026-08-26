@@ -34,7 +34,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Subheadline */}
             <p className="hero-subheadline">
-              MapFlow AI automatically discovers targeted local businesses, extracts verified direct owner emails &amp; phone numbers, generates personalized outreach pitches, and organizes your entire client pipeline.
+              LeadGen AI automatically discovers targeted local businesses, extracts verified direct owner emails &amp; phone numbers, generates personalized outreach pitches, and organizes your entire client pipeline.
             </p>
 
             {/* CTAs */}

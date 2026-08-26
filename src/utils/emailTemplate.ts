@@ -1,7 +1,7 @@
 import { ContactFormData } from '../types/contact';
 
 /**
- * Generates a modern, responsive HTML email template for MapFlow AI contact form inquiries.
+ * Generates a modern, responsive HTML email template for LeadGen AI contact form inquiries.
  * Designed with premium glassmorphism accents, brand typography, inline button styles, and interactive CTAs.
  */
 export const generateEmailHtml = (formData: ContactFormData): string => {
@@ -25,7 +25,7 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Lead Inquiry - MapFlow AI</title>
+  <title>New Lead Inquiry - LeadGen AI</title>
   <style>
     body {
       margin: 0;
@@ -158,7 +158,7 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
   <div class="wrapper">
     <div class="main-card">
       <div class="header">
-        <div class="header-logo">⚡ MapFlow AI</div>
+        <div class="header-logo">⚡ LeadGen AI</div>
         <div class="header-tag">NEW LEAD INQUIRY</div>
       </div>
 
@@ -205,7 +205,7 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 24px;">
           <tr>
             <td align="center">
-              <a href="mailto:${escapeHtml(formData.email)}?subject=Re: ${encodeURIComponent(formData.subject)} - MapFlow AI"
+              <a href="mailto:${escapeHtml(formData.email)}?subject=Re: ${encodeURIComponent(formData.subject)} - LeadGen AI"
                  style="display: inline-block; background: linear-gradient(135deg, #0EA5A4 0%, #037172 100%); color: #FFFFFF !important; text-decoration: none !important; font-weight: 700; font-size: 14px; padding: 14px 28px; border-radius: 8px; box-shadow: 0 4px 16px rgba(14, 165, 164, 0.4); margin: 6px; letter-spacing: 0.02em;">
                 ✉️ &nbsp;Reply to ${escapeHtml(firstName)}
               </a>
@@ -221,8 +221,8 @@ export const generateEmailHtml = (formData: ContactFormData): string => {
       </div>
 
       <div class="footer">
-        <p>This automated inquiry notification was dispatched to <strong>madhusudhanan.yenmin@gmail.com</strong> by MapFlow AI Lead Generation Engine.</p>
-        <p>© ${new Date().getFullYear()} MapFlow AI. All rights reserved.</p>
+        <p>This automated inquiry notification was dispatched to <strong>madhusudhanan.yenmin@gmail.com</strong> by LeadGen AI Lead Generation Engine.</p>
+        <p>© ${new Date().getFullYear()} LeadGen AI. All rights reserved.</p>
       </div>
     </div>
   </div>

@@ -48,7 +48,7 @@ export const Navbar: React.FC = () => {
             <MapPin size={20} />
           </div>
           <span className="navbar__brand-text">
-            MapFlow<span className="text-gradient"> AI</span>
+            LeadGen<span className="text-gradient"> AI</span>
           </span>
         </Link>
 

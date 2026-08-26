@@ -554,12 +554,20 @@
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
-  transition: all var(--transition-normal);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 .bento-card:hover {
-  border-color: rgba(14, 165, 164, 0.4);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--secondary);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 24px 48px -15px rgba(14, 165, 164, 0.3), var(--shadow-glow);
+}
+
+.bento-card:hover .bento-icon-box {
+  transform: scale(1.08);
+  box-shadow: 0 0 15px var(--secondary-glow);
 }
 
 /* Asymmetric Bento Spans */
@@ -587,6 +595,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-color);
+  transition: all var(--transition-normal);
 }
 
 .bento-icon--primary { background: rgba(3, 113, 114, 0.15); color: #0EA5A4; }
@@ -2155,13 +2164,21 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   position: relative;
-  transition: all var(--transition-normal);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
   padding: 28px 24px;
 }
 
 .pricing-card:hover {
-  border-color: rgba(14, 165, 164, 0.4);
-  transform: translateY(-4px);
+  border-color: var(--secondary);
+  transform: translateY(-14px) scale(1.02);
+  box-shadow: 0 24px 48px -15px rgba(14, 165, 164, 0.3), var(--shadow-glow);
+}
+
+.pricing-card:hover .plan-icon-box {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px var(--secondary-glow);
 }
 
 /* Card Top Header & Icons */
@@ -2181,6 +2198,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all var(--transition-normal);
 }
 
 .icon-box--featured {
@@ -2226,7 +2244,7 @@
 }
 
 .pricing-card--featured:hover {
-  transform: scale(1.04);
+  transform: translateY(-14px) scale(1.04);
   box-shadow: 0 25px 55px -10px rgba(3, 113, 114, 0.45), 0 0 35px rgba(14, 165, 164, 0.3);
 }
 
@@ -3116,13 +3134,24 @@
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
-  transition: all var(--transition-normal);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 .testimonial-card:hover {
-  border-color: rgba(14, 165, 164, 0.4);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--secondary);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 24px 48px -15px rgba(14, 165, 164, 0.3), var(--shadow-glow);
+}
+
+.testimonial-card:hover .quote-watermark {
+  transform: scale(1.2) rotate(-8deg);
+  color: var(--secondary);
+}
+
+.testimonial-card:hover .avatar-initials-box {
+  transform: scale(1.08);
 }
 
 .testimonial-card-top {
@@ -3140,6 +3169,7 @@
 
 .quote-watermark {
   color: rgba(14, 165, 164, 0.3);
+  transition: all var(--transition-normal);
 }
 
 .testimonial-quote {
@@ -3173,6 +3203,7 @@
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(3, 113, 114, 0.35);
   flex-shrink: 0;
+  transition: all var(--transition-normal);
 }
 
 .profile-details {
@@ -3846,7 +3877,7 @@
 }
 
 /* ==========================================================================
-   AUTHENTIC SAAS PRODUCT TOOL STYLES (MAPFLOW AI SCREENSHOT REPLICATION)
+   AUTHENTIC SAAS PRODUCT TOOL STYLES (LEADGEN AI SCREENSHOT REPLICATION)
    ========================================================================== */
 
 /* Top Window Bar Elements */
@@ -8711,6 +8742,26 @@
   text-transform: uppercase;
 }
 
+.mock-search-box-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.mock-search-box--keyword {
+  flex: 1.3;
+}
+
+.mock-search-box--location {
+  flex: 0.7;
+}
+
+@media (max-width: 480px) {
+  .mock-search-box-row {
+    flex-direction: column;
+  }
+}
+
 .mock-search-box {
   background: rgba(10, 15, 30, 0.8);
   border: 1px solid rgba(14, 165, 164, 0.35);
@@ -9022,7 +9073,7 @@
 }
 
 .start-scan-mock-btn {
-  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  background: var(--gradient-primary);
   color: #FFFFFF;
   border: none;
   border-radius: 8px;
@@ -9033,7 +9084,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 14px var(--primary-glow);
 }
 
 /* Step 4 Styles */

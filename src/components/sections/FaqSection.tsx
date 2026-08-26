@@ -17,12 +17,12 @@ export const FaqSection: React.FC = () => {
     {
       question: 'Do I need any technical setup or technical knowledge to start?',
       answer:
-        'No. MapFlow AI requires zero technical setup. Simply enter your target business type and location to start finding verified local business leads in seconds.'
+        'No. LeadGen AI requires zero technical setup. Simply enter your target business type and location to start finding verified local business leads in seconds.'
     },
     {
       question: 'How accurate is the website email scraper?',
       answer:
-        "MapFlow AI's deep web search parses company websites to locate direct business owner emails, phone numbers, LinkedIn profiles, and verified contact info."
+        "LeadGen AI's deep web search parses company websites to locate direct business owner emails, phone numbers, LinkedIn profiles, and verified contact info."
     },
     {
       question: 'What happens if I run out of monthly credits?',
@@ -32,10 +32,10 @@ export const FaqSection: React.FC = () => {
     {
       question: 'Can I export leads to CSV or my existing CRM?',
       answer:
-        'Yes. MapFlow AI supports 1-click CSV file downloads and seamless exports to keep your sales workflow organized.'
+        'Yes. LeadGen AI supports 1-click CSV file downloads and seamless exports to keep your sales workflow organized.'
     },
     {
-      question: 'Is there a free trial to test MapFlow AI?',
+      question: 'Is there a free trial to test LeadGen AI?',
       answer:
         'Yes. Sign up today and receive 25 free lead credits immediately without requiring a credit card.'
     }
@@ -55,7 +55,7 @@ export const FaqSection: React.FC = () => {
         <SectionHeading
           badge="GOT QUESTIONS?"
           title="Frequently Asked Questions"
-          subtitle="Everything you need to know about MapFlow AI lead discovery, enrichment, and pricing."
+          subtitle="Everything you need to know about LeadGen AI lead discovery, enrichment, and pricing."
           align="center"
         />
 
