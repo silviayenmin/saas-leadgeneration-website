@@ -59,16 +59,16 @@ export const ProductShowcaseSection: React.FC = () => {
       setScrollProgress(progress);
 
       // Map progress to steps:
-      // 0.00 to 0.12: Welcome / Center state
-      // 0.12 to 0.40: Step 1 (Find Customers)
-      // 0.40 to 0.62: Step 2 (Select Preferences)
+      // 0.00 to 0.08: Welcome / Center state
+      // 0.08 to 0.38: Step 1 (Find Customers)
+      // 0.38 to 0.62: Step 2 (Select Preferences)
       // 0.62 to 0.82: Step 3 (Review Summary)
       // 0.82 to 1.00: Step 4 (Active Search & Results)
-      if (progress < 0.12) {
+      if (progress < 0.08) {
         setActiveBoxStep(1);
-      } else if (progress >= 0.12 && progress < 0.40) {
+      } else if (progress >= 0.08 && progress < 0.38) {
         setActiveBoxStep(1);
-      } else if (progress >= 0.40 && progress < 0.62) {
+      } else if (progress >= 0.38 && progress < 0.62) {
         setActiveBoxStep(2);
       } else if (progress >= 0.62 && progress < 0.82) {
         setActiveBoxStep(3);
@@ -208,28 +208,28 @@ export const ProductShowcaseSection: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const robotTranslateY = windowWidth < 820 ? (scrollProgress < 0.12 ? 30 : 0) : 0;
-  const revealProgress = scrollProgress < 0.12 ? 0 : scrollProgress >= 0.30 ? 1 : (scrollProgress - 0.12) / 0.18;
+  const robotTranslateY = windowWidth < 820 ? (scrollProgress < 0.08 ? 30 : 0) : 0;
+  const revealProgress = scrollProgress < 0.08 ? 0 : scrollProgress >= 0.25 ? 1 : (scrollProgress - 0.08) / 0.17;
 
   // Scroll-Based Storytelling Layout
   return (
-      <div className="showcase-scroll-track" ref={trackRef}>
-        <div className="showcase-sticky-viewport">
-          <section id="product" className="section-wrapper product-showcase-wrapper">
-            {/* Background Glow */}
-            <div className="showcase-bg-glow" />
+    <div className="showcase-scroll-track" ref={trackRef}>
+      <div className="showcase-sticky-viewport">
+        <section id="product" className="section-wrapper product-showcase-wrapper" style={{ overflow: 'visible' }}>
+          {/* Background Glow */}
+          <div className="showcase-bg-glow" />
 
-            <Container size="lg">
-              {/* Section Heading */}
-              <SectionHeading
-                badge="AUTHENTIC PRODUCT INTERFACE"
-                title="Experience MapFlow AI in Action"
-                subtitle="Explore our live SaaS tool—from 3-step lead discovery to maps scan history, lead profile details, and CRM pipeline."
-                align="center"
-              />
+          <Container size="lg" className="showcase-content-container">
+            {/* Section Heading — Inside the sticky viewport so it stays visible */}
+            <SectionHeading
+              badge="AUTHENTIC PRODUCT INTERFACE"
+              title="Experience MapFlow AI in Action"
+              subtitle="Explore our live SaaS tool—from 3-step lead discovery to maps scan history, lead profile details, and CRM pipeline."
+              align="center"
+            />
 
-              {/* Product Dashboard Window Shell */}
-              <div className="showcase-window">
+            {/* Product Dashboard Window Shell */}
+            <div className="showcase-window">
                 {/* Window Bar */}
                 <div className="showcase-window-bar">
                   <div className="window-dots">
@@ -310,26 +310,26 @@ export const ProductShowcaseSection: React.FC = () => {
                     </div>
 
                     {/* Split Storytelling Layout (Left: Narrator/Robot, Right: Step Visuals) */}
-                    <div className={`showcase-split-container ${scrollProgress < 0.12 ? 'centered-state' : ''}`}>
+                    <div className="showcase-split-container">
                       {/* Left Column: Narrator Column */}
-                      <div className={`showcase-narrator-column theme-${activeBoxStep}`}>
+                      <div className={`showcase-narrator-column theme-${activeBoxStep} ${scrollProgress < 0.08 ? 'centered-state' : ''}`}>
                         <div className="narrator-bubble-container bubble-visible">
                           <div className="narrator-speech-bubble">
                             <Sparkles size={14} className="text-cyan animate-pulse bubble-sparkle" />
                             <div className="bubble-text-wrapper">
-                              <div className={`bubble-text-slide ${scrollProgress < 0.12 ? 'active' : ''}`}>
+                              <div className={`bubble-text-slide ${scrollProgress < 0.08 ? 'active' : ''}`}>
                                 <strong>AI Guide:</strong> Hi! I'm your MapFlow AI guide. Let's explore how it works! Scroll down to start! 🚀
                               </div>
-                              <div className={`bubble-text-slide ${(scrollProgress >= 0.12 && activeBoxStep === 1) ? 'active' : ''}`}>
+                              <div className={`bubble-text-slide ${(scrollProgress >= 0.08 && activeBoxStep === 1) ? 'active' : ''}`}>
                                 <strong>AI Guide:</strong> Describe who you want to find and where in plain English—no complex setups required!
                               </div>
-                              <div className={`bubble-text-slide ${(scrollProgress >= 0.12 && activeBoxStep === 2) ? 'active' : ''}`}>
+                              <div className={`bubble-text-slide ${(scrollProgress >= 0.08 && activeBoxStep === 2) ? 'active' : ''}`}>
                                 <strong>AI Guide:</strong> Customize search thresholds to target specific business ratings and slow loading speeds.
                               </div>
-                              <div className={`bubble-text-slide ${(scrollProgress >= 0.12 && activeBoxStep === 3) ? 'active' : ''}`}>
+                              <div className={`bubble-text-slide ${(scrollProgress >= 0.08 && activeBoxStep === 3) ? 'active' : ''}`}>
                                 <strong>AI Guide:</strong> Review search filters and estimated lead count, then launch the automated scraper!
                               </div>
-                              <div className={`bubble-text-slide ${(scrollProgress >= 0.12 && activeBoxStep === 4) ? 'active' : ''}`}>
+                              <div className={`bubble-text-slide ${(scrollProgress >= 0.08 && activeBoxStep === 4) ? 'active' : ''}`}>
                                 <strong>AI Guide:</strong> Success! Get verified emails, phone numbers, and personalized pitches instantly.
                               </div>
                             </div>
@@ -368,13 +368,13 @@ export const ProductShowcaseSection: React.FC = () => {
                       </div>
 
                       {/* Right Column: Visual Column */}
-                      <div className={`showcase-visual-column ${scrollProgress < 0.12 ? 'column-hidden' : ''}`}>
+                      <div className={`showcase-visual-column ${scrollProgress < 0.08 ? 'column-hidden' : ''}`}>
                         <div 
                           className="visual-card-wrapper"
                           style={{
                             clipPath: `ellipse(calc(${revealProgress * 125}% + 10%) calc(${revealProgress * 135}% + 10%) at 25% 15%)`,
                             opacity: revealProgress,
-                            visibility: scrollProgress < 0.12 ? 'hidden' : 'visible',
+                            visibility: scrollProgress < 0.08 ? 'hidden' : 'visible',
                             transform: `scale(${0.96 + revealProgress * 0.04}) translate3d(0, ${(1 - revealProgress) * 20}px, 0)`,
                             transition: 'clip-path 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s'
                           }}
