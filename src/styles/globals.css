@@ -16,7 +16,7 @@ html {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip allows position: sticky to stick correctly, unlike hidden */
   width: 100%;
 }
 
@@ -24,14 +24,14 @@ body {
   min-height: 100vh;
   background-color: var(--bg-main);
   color: var(--text-primary);
-  overflow-x: hidden;
+  overflow-x: clip; /* clip allows position: sticky to stick correctly, unlike hidden */
   position: relative;
   width: 100%;
 }
 
 #root {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip allows position: sticky to stick correctly, unlike hidden */
 }
 
 /* Typography Base */
