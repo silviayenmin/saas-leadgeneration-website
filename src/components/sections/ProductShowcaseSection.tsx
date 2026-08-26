@@ -24,7 +24,11 @@ import {
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import './sections.css';
-import robotImg from '../../../assets/Robot.png';
+import free1 from '../../../assets/free1.png';
+import free2 from '../../../assets/free2.png';
+import free3 from '../../../assets/free3.png';
+import free4 from '../../../assets/free4.png';
+import free5 from '../../../assets/free5.png';
 
 
 
@@ -148,6 +152,24 @@ export const ProductShowcaseSection: React.FC = () => {
 
 
 
+
+  const getRobotImage = () => {
+    if (scrollProgress < 0.08) {
+      return free1;
+    }
+    switch (activeBoxStep) {
+      case 1:
+        return free2;
+      case 2:
+        return free3;
+      case 3:
+        return free4;
+      case 4:
+        return free5;
+      default:
+        return free1;
+    }
+  };
 
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
@@ -295,16 +317,24 @@ export const ProductShowcaseSection: React.FC = () => {
                           <div className="avatar-pulse-ring" />
                           <div className="avatar-svg-container">
                             <img 
-                              src={robotImg} 
+                              src={getRobotImage()} 
                               alt="LeadGen AI Guide Robot" 
                               className="presenter-svg presenter-png"
                               style={{
-                                width: '230px',
+                                width: '410px',
                                 height: 'auto',
                                 objectFit: 'contain'
                               }}
                             />
                           </div>
+                        </div>
+                        {/* Preload robot poses to prevent flickering */}
+                        <div style={{ display: 'none' }} aria-hidden="true">
+                          <img src={free1} alt="" />
+                          <img src={free2} alt="" />
+                          <img src={free3} alt="" />
+                          <img src={free4} alt="" />
+                          <img src={free5} alt="" />
                         </div>
                       </div>
 
